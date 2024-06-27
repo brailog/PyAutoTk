@@ -1,6 +1,9 @@
 from typing import List
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from typing import List
 
 
 class BrowserController:
@@ -40,3 +43,4 @@ class BrowserController:
 
     def end(self) -> None:
         self.driver.close()
+

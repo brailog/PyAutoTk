@@ -9,3 +9,4 @@ def test_example_one(browser_connection: 'BrowserConnection') -> None:
                                                       pytest.password_account_test
                                                       )
     assert "Feed" in browser_connection.driver.title
+
