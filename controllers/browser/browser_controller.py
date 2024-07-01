@@ -1,8 +1,6 @@
+from typing import List
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from typing import List
 
 
 class BrowserController:
@@ -37,9 +35,8 @@ class BrowserController:
     def switch_to_window(self, window_handle: str) -> None:
         self.driver.switch_to.window(window_handle)
 
-    def switch_to_new_window(self, timeout: int = 10) -> None:
-        all_windows = self.get_all_window_handles()
-
-
     def close_current_window(self) -> None:
+        self.driver.close()
+
+    def end(self) -> None:
         self.driver.close()
