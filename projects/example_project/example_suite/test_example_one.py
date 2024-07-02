@@ -12,12 +12,12 @@ def test_example_one(browser_controller: 'BrowserController'):
     btn_password_login = Widget(browser.driver, id="password", name="session_password", type="password")
     btn_login.click()
     btn_username_login.click()
-    btn_username_login.enter_text("*@gmail.com")
+    btn_username_login.enter_text("defaultusertest99@gmail.com")
     btn_password_login.click()
-    btn_password_login.enter_text("*")
-    # btn_login = Widget(browser.driver, text="Sign in", type="submit")
-    # btn_login.click()
-    #
+    btn_password_login.enter_text("test3227")
+    btn_login = Widget(browser.driver, text="Sign in", type="submit")
+    btn_login.click()
+
     # search = Widget(browser.driver, placeholder="Search", type="text")
     # search.click(timeout=30)
     # search.enter_text("Empreendedorismo")
@@ -29,6 +29,4 @@ def test_example_one(browser_controller: 'BrowserController'):
     # btn_see_all_people = Widget(browser.driver, text="See all people results")
     # btn_see_all_people.scroll_to()
     # btn_see_all_people.click()
-
-
-    print(Widget.get_all_elements_with_attribute(browser.driver, "href"))
+    # print(Widget.get_all_elements_with_attribute(browser.driver, "href"))
