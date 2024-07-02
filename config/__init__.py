@@ -1,4 +1,7 @@
 from .logger import setup_logger
 
+def get_logger():
+    import logging
+    return logging.getLogger('hextec')
 
-logger = setup_logger()
+logger = get_logger()
