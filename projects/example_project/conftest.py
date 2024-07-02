@@ -1,11 +1,11 @@
-from controllers.browser.browser_controller import BrowserController
+from controllers.browser.browser_connection import BrowserConnection
 from config import logger
 import pytest
 
 @pytest.fixture
-def browser_controller() -> 'BrowserController':
-    browser = BrowserController()
-    logger.info('Browser Controller init')
+def browser_connection() -> 'BrowserConnection':
+    browser = BrowserConnection()
+    logger.info('Browser connection init')
     yield browser
     browser.end()
-    logger.info('Browser Controller Ended')
+    logger.info('Browser connection Ended')

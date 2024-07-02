@@ -1,10 +1,10 @@
-from controllers.browser.browser_controller import BrowserController
+from controllers.browser.browser_connection import BrowserConnection
 from config import logger
 
 
-def test_example_one(browser_controller: 'BrowserController'):
-    browser = browser_controller
+def test_example_one(browser_connection: 'BrowserConnection'):
+    browser = browser_connection
     logger.info('Open google page')
-    browser.open_url("https://www.google.com")
+    browser.google.open()
     logger.info(browser.driver.title)
     assert browser.driver.title == "Google"
