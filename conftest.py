@@ -59,7 +59,6 @@ def pytest_sessionfinish(session, exitstatus):
         dir_csv_path = pytest.session_folder
         df.to_csv(f'{dir_csv_path}/summary_db_result.csv', index=False)
 
-    print(df)
 
 
 @pytest.hookimpl(tryfirst=True)
@@ -73,12 +72,12 @@ def pytest_runtest_teardown(item: Item, nextitem: Item) -> None:
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_exception_interact(node, call, report):
-    logger.error(f"Exception occurred at {call.excinfo.traceback[-1].path}:{call.excinfo.traceback[-1].lineno}")
-    logger.error(f"Exception type: {call.excinfo.typename}")
-    logger.error(f"Exception value: {call.excinfo.value}")
+    logger.debug(f"Exception occurred at {call.excinfo.traceback[-1].path}:{call.excinfo.traceback[-1].lineno}")
+    logger.debug(f"Exception type: {call.excinfo.typename}")
+    logger.debug(f"Exception value: {call.excinfo.value}")
     formatted_tb = ''.join(traceback.format_tb(call.excinfo.tb))
     short_tb = formatted_tb.split('\n')[-5:]
-    logger.error(f"Short traceback:\n{''.join(short_tb)}")
+    logger.debug(f"Short traceback:\n{''.join(short_tb)}")
 
 
 def _create_folder(path: str, folder_name: str) -> AnyStr:
