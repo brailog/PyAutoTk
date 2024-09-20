@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PyAutoTk
 
 PyAutoTk is a modular, extensible Python framework designed to facilitate the automation of applications across different platforms, such as web browsers and Android devices. The framework follows a layered architecture that promotes a clear separation of concerns, making it easy to manage, expand, and refactor.
