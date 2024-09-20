@@ -1,0 +1,18 @@
+[project]
+name = "hextec_brailog"
+version = "0.1.0"
+authors = [
+  { name="Gabriel Ramos R. Oliveira", email="bielrammos@gmail.com" },
+]
+description = "Page Object framework helper"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/brailog/hextec-framework"
+Issues = "https://github.com/brailog/hextec-framework/issues"
