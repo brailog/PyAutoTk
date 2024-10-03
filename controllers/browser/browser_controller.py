@@ -1,19 +1,31 @@
 from typing import List
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.firefox import service
+
+FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
+FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"
 
 
 class BrowserController:
-    def __init__(self, browser_type: str = 'firefox', maximize=False) -> None:
+    def __init__(self,
+                 browser_type: str = 'firefox',
+                 maximize: bool = False,
+                 headless: bool = False) -> None:
         self.browser_type = browser_type.lower()
         self.maximize = maximize
+        self.headless = headless
         self.driver = self._initialize_driver()
 
     def _initialize_driver(self) -> WebDriver:
-        if self.browser_type == 'chrome':
-            driver = webdriver.Chrome()
-        elif self.browser_type == 'firefox':
-            driver = webdriver.Firefox()
+        if self.browser_type == 'firefox':
+            options = webdriver.firefox.options.Options()
+            options.binary_location = FIREFOX_BIN
+            if self.headless:
+                options.add_argument('--headless')
+
+            firefox_service = webdriver.firefox.service.Service(executable_path=FIREFOXDRIVE_BIN)
+            driver = webdriver.Firefox(service=firefox_service, options=options)
         else:
             raise ValueError(f"Unsupported browser type: {self.browser_type}")
         if self.maximize:
@@ -23,7 +35,7 @@ class BrowserController:
     def open_url(self, url: str) -> None:
         self.driver.get(url)
 
-    def close_browser(self) -> None:
+    def kill_browser(self) -> None:
         self.driver.quit()
 
     def get_current_window_handle(self) -> str:
