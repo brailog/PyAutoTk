@@ -1,1 +1,1 @@
-from .logger_utils import initialize_logger
+from .logger_utils import initialize_logger  # noqa F541

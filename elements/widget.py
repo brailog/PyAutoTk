@@ -39,9 +39,7 @@ class Widget:
         try:
             self.controller.click_element(self.xpath, timeout)
         except Exception as e:
-            self.logger.error(
-                f"Failed to click on element with XPath: {self.xpath}. Error: {e}"
-            )
+            self.logger.error(f"Failed to click on element with XPath: {self.xpath}. Error: {e}")
             raise
 
     def enter_text(self, text: str, timeout: int = 10) -> None:
@@ -52,9 +50,7 @@ class Widget:
             text (str): The text to be entered into the element.
             timeout (int): Maximum time to wait for the element to be present before entering text. Default is 10 seconds.
         """
-        self.logger.info(
-            f"Entering text '{text}' into element with XPath: {self.xpath}"
-        )
+        self.logger.info(f"Entering text '{text}' into element with XPath: {self.xpath}")
         self.click()  # Ensure the element is focused before entering text
         try:
             self.controller.enter_text(self.xpath, text, timeout)
@@ -77,9 +73,7 @@ class Widget:
         try:
             self.controller.scroll_to_element(self.xpath, timeout)
         except Exception as e:
-            self.logger.error(
-                f"Failed to scroll to element with XPath: {self.xpath}. Error: {e}"
-            )
+            self.logger.error(f"Failed to scroll to element with XPath: {self.xpath}. Error: {e}")
             raise
 
     def wait_for(self, timeout: int = 10) -> Any:
@@ -100,15 +94,11 @@ class Widget:
             self.logger.info(f"Element with XPath: {self.xpath} is now visible.")
             return element
         except Exception as e:
-            self.logger.error(
-                f"Failed to wait for element with XPath: {self.xpath}. Error: {e}"
-            )
+            self.logger.error(f"Failed to wait for element with XPath: {self.xpath}. Error: {e}")
             raise
 
     @staticmethod
-    def get_all_elements_with_attribute(
-        controller: Any, attribute: str
-    ) -> Dict[str, WebElement]:
+    def get_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, WebElement]:
         """
         Retrieves all elements in the page that have a specific attribute.
 
@@ -125,9 +115,7 @@ class Widget:
             elements = controller.find_elements(f"//*[@{attribute}]")
             return elements
         except Exception as e:
-            logger.error(
-                f"Failed to retrieve elements with attribute: {attribute}. Error: {e}"
-            )
+            logger.error(f"Failed to retrieve elements with attribute: {attribute}. Error: {e}")
             raise
 
     def _build_xpath(self) -> str:

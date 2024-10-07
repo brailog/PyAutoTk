@@ -144,16 +144,14 @@ class BrowserController:
         Raises:
             ValueError: If the specified `browser_type` is not supported.
         """
-        self.logger.debug(f"Init driver")
+        self.logger.debug("Init driver")
         if self.browser_type == "firefox":
             options = webdriver.firefox.options.Options()
             options.binary_location = FIREFOX_BIN
             if self.headless:
                 options.add_argument("--headless")
 
-            firefox_service = webdriver.firefox.service.Service(
-                executable_path=FIREFOXDRIVE_BIN
-            )
+            firefox_service = webdriver.firefox.service.Service(executable_path=FIREFOXDRIVE_BIN)
             driver = webdriver.Firefox(service=firefox_service, options=options)
         else:
             raise ValueError(f"Unsupported browser type: {self.browser_type}")

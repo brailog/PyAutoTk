@@ -17,10 +17,10 @@ class TestWidgetXPath(unittest.TestCase):
         )
 
     def test_generate_xpath_multiple_attributes(self):
-        widget = Widget(
-            self.controller, id="submit-btn", class_name="btn-primary", text="Submit"
+        widget = Widget(self.controller, id="submit-btn", class_name="btn-primary", text="Submit")
+        expected_xpath = (
+            "//*[@id='submit-btn' and @class='btn-primary' and contains(text(), 'Submit')]"
         )
-        expected_xpath = "//*[@id='submit-btn' and @class='btn-primary' and contains(text(), 'Submit')]"
         self.assertEqual(
             widget.xpath,
             expected_xpath,
