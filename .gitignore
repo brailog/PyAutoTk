@@ -2,3 +2,6 @@ __pycache__/
 *.log
 logs/
 .idea
+.pre-commit-config.yaml
+.egg-info/
+*.pyc

@@ -1,5 +1,5 @@
 import unittest
-from elements.widget import Widget
+from pyautotk.elements.widget import Widget
 from unittest.mock import MagicMock
 
 

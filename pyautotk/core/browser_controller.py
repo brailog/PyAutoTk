@@ -4,8 +4,8 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from logger.logger_utils import initialize_logger
-from core.config_loader import config
+from pyautotk.core.logger_utils import initialize_logger
+from pyautotk.core.config_loader import config
 
 FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
 FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"

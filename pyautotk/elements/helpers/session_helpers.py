@@ -1,5 +1,5 @@
 from functools import wraps
-from core.browser_controller import BrowserController
+from pyautotk.core.browser_controller import BrowserController
 
 
 def browser_session(

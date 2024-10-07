@@ -1,7 +1,7 @@
 import logging
 import sys
 from typing import Optional
-from core.config_loader import config
+from pyautotk.core.config_loader import config
 
 
 def initialize_logger(

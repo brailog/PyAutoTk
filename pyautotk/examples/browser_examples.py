@@ -1,7 +1,7 @@
 import time
-from elements.widget import Widget
-from elements.helpers.session_helpers import browser_session
-from core.config_loader import config
+from pyautotk.elements.widget import Widget
+from pyautotk.elements.helpers.session_helpers import browser_session
+from pyautotk.core.config_loader import config
 
 config.log_level = "DEBUG"
 
@@ -23,6 +23,8 @@ def search_google(session, search_input="PyAutoTk"):
     time.sleep(1)
 
 
-if __name__ == "__main__":
-    watch_shorts()
+def main():
+    print("Running Google Search example...")
     search_google()
+    print("Running YouTube Shorts example...")
+    watch_shorts()

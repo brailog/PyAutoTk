@@ -1,7 +1,6 @@
 import re
 from typing import Dict, Any
-from selenium.webdriver.remote.webelement import WebElement
-from logger.logger_utils import initialize_logger
+from pyautotk.core.logger_utils import initialize_logger
 
 
 class Widget:
@@ -98,7 +97,7 @@ class Widget:
             raise
 
     @staticmethod
-    def get_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, WebElement]:
+    def get_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, str]:
         """
         Retrieves all elements in the page that have a specific attribute.
 
@@ -109,7 +108,7 @@ class Widget:
         Returns:
             Dict[str, WebElement]: A dictionary where the keys are the attribute values and the values are the corresponding WebElements.
         """
-        logger = initialize_logger("Widget")  # Static logger for this method
+        logger = initialize_logger("Widget")
         logger.info(f"Retrieving all elements with attribute: {attribute}")
         try:
             elements = controller.find_elements(f"//*[@{attribute}]")
