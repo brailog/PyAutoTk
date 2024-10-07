@@ -2,7 +2,12 @@ from functools import wraps
 from core.browser_controller import BrowserController
 
 
-def browser_session(url: str, browser_type: str = 'firefox', maximize: bool = False, headless: bool = False):
+def browser_session(
+    url: str,
+    browser_type: str = "firefox",
+    maximize: bool = False,
+    headless: bool = False,
+):
     """
     A decorator that manages a browser session using the BrowserController, with support for configuring
     the browser type, window size, and headless mode.
@@ -20,6 +25,7 @@ def browser_session(url: str, browser_type: str = 'firefox', maximize: bool = Fa
     Returns:
         Callable: The wrapped function with the browser session management.
     """
+
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -34,11 +40,15 @@ def browser_session(url: str, browser_type: str = 'firefox', maximize: bool = Fa
             Returns:
                 Any: The result of the decorated function.
             """
-            session = BrowserController(browser_type=browser_type, maximize=maximize, headless=headless)
+            session = BrowserController(
+                browser_type=browser_type, maximize=maximize, headless=headless
+            )
             try:
                 session.open_url(url)
                 return func(session, *args, **kwargs)
             finally:
                 session.kill_browser()
+
         return wrapper
+
     return decorator

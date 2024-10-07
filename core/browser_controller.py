@@ -10,11 +10,13 @@ from core.config_loader import config
 FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
 FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"
 
+
 class BrowserController:
     """
     Manages interactions with a web browser using Selenium, providing a high-level API for navigation, element handling,
     and browser control. Supports configurable options such as browser type, headless mode, and maximization.
     """
+
     def __init__(self, browser_type: str, maximize: bool, headless: bool) -> None:
         """
         Initializes the BrowserController with the specified browser configuration.
@@ -29,7 +31,6 @@ class BrowserController:
         self.maximize = maximize or config.maximize_browser
         self.headless = headless or config.headless_mode
         self.driver = self._initialize_driver()
-
 
     def open_url(self, url: str) -> None:
         """
@@ -63,7 +64,9 @@ class BrowserController:
             TimeoutException: If the element is not found within the given time.
         """
         self.logger.debug(f"Searching for a element using the following xpath: {xpath}")
-        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, xpath)))
+        return WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.XPATH, xpath))
+        )
 
     def click_element(self, xpath: str, timeout: int = 10) -> None:
         """
@@ -127,7 +130,9 @@ class BrowserController:
             TimeoutException: If the element is not found within the given time.
         """
         self.logger.debug(f"Wait for a element using the following xpath: {xpath}")
-        return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((By.XPATH, xpath)))
+        return WebDriverWait(self.driver, timeout).until(
+            EC.visibility_of_element_located((By.XPATH, xpath))
+        )
 
     def _initialize_driver(self) -> WebDriver:
         """
@@ -140,13 +145,15 @@ class BrowserController:
             ValueError: If the specified `browser_type` is not supported.
         """
         self.logger.debug(f"Init driver")
-        if self.browser_type == 'firefox':
+        if self.browser_type == "firefox":
             options = webdriver.firefox.options.Options()
             options.binary_location = FIREFOX_BIN
             if self.headless:
-                options.add_argument('--headless')
+                options.add_argument("--headless")
 
-            firefox_service = webdriver.firefox.service.Service(executable_path=FIREFOXDRIVE_BIN)
+            firefox_service = webdriver.firefox.service.Service(
+                executable_path=FIREFOXDRIVE_BIN
+            )
             driver = webdriver.Firefox(service=firefox_service, options=options)
         else:
             raise ValueError(f"Unsupported browser type: {self.browser_type}")

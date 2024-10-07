@@ -2,6 +2,7 @@ import time
 from elements.widget import Widget
 from elements.helpers.session_helpers import browser_session
 from core.config_loader import config
+
 config.log_level = "DEBUG"
 
 
@@ -22,6 +23,6 @@ def search_google(session, search_input="PyAutoTk"):
     time.sleep(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     watch_shorts()
     search_google()
