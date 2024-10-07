@@ -1,11 +1,12 @@
-from typing import List
+from typing import List, Any
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.firefox import service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
 FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"
-
 
 class BrowserController:
     def __init__(self,
@@ -38,17 +39,21 @@ class BrowserController:
     def kill_browser(self) -> None:
         self.driver.quit()
 
-    def get_current_window_handle(self) -> str:
-        return self.driver.current_window_handle
+    def find_element(self, xpath: str, timeout: int = 10) -> Any:
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((By.XPATH, xpath)))
 
-    def get_all_window_handles(self) -> List[str]:
-        return self.driver.window_handles
+    def click_element(self, xpath: str, timeout: int = 10) -> None:
+        element = self.find_element(xpath, timeout)
+        element.click()
 
-    def switch_to_window(self, window_handle: str) -> None:
-        self.driver.switch_to.window(window_handle)
+    def enter_text(self, xpath: str, text: str, timeout: int = 10) -> None:
+        element = self.find_element(xpath, timeout)
+        element.clear()
+        element.send_keys(text)
 
-    def close_current_window(self) -> None:
-        self.driver.close()
+    def scroll_to_element(self, xpath: str, timeout: int = 10) -> None:
+        element = self.find_element(xpath, timeout)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    def end(self) -> None:
-        self.driver.close()
+    def wait_for_element(self, xpath: str, timeout: int = 10) -> Any:
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((By.XPATH, xpath)))
