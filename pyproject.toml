@@ -1,5 +1,5 @@
 [project]
-name = "hextec_brailog"
+name = "pyautotk"
 version = "0.1.0"
 authors = [
   { name="Gabriel Ramos R. Oliveira", email="bielrammos@gmail.com" },
@@ -14,5 +14,19 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/brailog/hextec-framework"
-Issues = "https://github.com/brailog/hextec-framework/issues"
+Homepage = "https://github.com/brailog/PyAutoTk"
+Issues = "https://github.com/brailog/PyAutoTk"
+
+[project.dependencies]
+selenium = ">=4.22.0"
+
+[project.optional-dependencies]
+dev = [
+    "black>=22.10.0",
+    "pre-commit>=4.0.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310']
+skip-string-normalization = true
