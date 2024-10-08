@@ -1,6 +1,6 @@
 [project]
 name = "pyautotk"
-version = "0.3.0"
+version = "0.3.1"
 authors = [
   { name="Gabriel Ramos R. Oliveira", email="bielrammos@gmail.com" },
 ]
@@ -32,6 +32,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/brailog/PyAutoTk"
 Issues = "https://github.com/brailog/PyAutoTk"
+Documentation = "https://pyautotk.readthedocs.io/en/latest/"
 
 [project.optional-dependencies]
 dev = [
