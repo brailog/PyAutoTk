@@ -13,7 +13,8 @@ Key features of PyAutoTk:
 - **Page Object Pattern**: Simplify your automation flows by using the industry-standard Page Object Pattern.
 - **High Customizability**: Easily extend and configure the framework to suit your specific needs.
 
-#### **When to Use PyAutoTk?**
+When to Use PyAutoTk?
+=======================
 
 PyAutoTk is ideal for developers and QA engineers who need a structured framework for automating:
 
