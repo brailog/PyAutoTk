@@ -1,67 +1,56 @@
 # PyAutoTk
 
-PyAutoTk is a modular, extensible Python framework designed to facilitate the automation of applications across different platforms, such as web browsers and Android devices. The framework follows a layered architecture that promotes a clear separation of concerns, making it easy to manage, expand, and refactor.
+Welcome to the PyAutoTk documentation!
+PyAutoTk is a modular and extensible automation framework designed to simplify the process of creating, managing, and executing automation scripts for both web and mobile platforms. The framework is built around the Page Object Model pattern and provides a rich set of tools for building automation scripts that are easy to maintain, read, and expand.
 
-With PyAutoTk, you can create sophisticated automation scripts using a combination of platform-specific controllers and a toolkit layer that abstracts the complexity of UI interactions, allowing for seamless development of automated tests or interaction scripts.
-Key Features
+### Key features of PyAutoTk:
+- `Cross-Platform Support:` The framework supports both web and mobile automation (Android support coming soon!).
+- `Layered Architecture:` Separate the control logic from the UI elements using Controllers and Toolkits.
+- `Page Object Pattern:` Simplify your automation flows by using the industry-standard Page Object Pattern.
+- `High Customizability:` Easily extend and configure the framework to suit your specific needs.
 
-- Cross-Platform Support: The framework supports both web and mobile automation, with controllers tailored for Selenium (browser) and UIAutomator (Android).
-- Layered Design: The architecture is separated into Controller and Toolkit layers, promoting modularity and reducing code duplication.
-- Reusable Components: Use pre-built Widgets, Screens, and Utilities for common UI interactions.
-- Centralized Logging: Integrated Logger module for comprehensive logging and debugging.
-- Resource Management: Easy handling of external resources such as JSON, CSV, images, and HTML templates.
-- Page Object Pattern: Built-in support for structured automation flows using the Page Object Pattern, simplifying complex interaction models.
-- Scalable and Extensible: Designed to be easily extended to support additional platforms or new UI components.
+## When to Use PyAutoTk?
 
-## Architecture Overview
+PyAutoTk is ideal for developers and QA engineers who need a structured framework for automating:
 
-The architecture is built around two primary layers: Controller and Toolkit, with additional support modules for logging and resources.
-1. Controller Layer
+- Web application testing
+- Data scraping from web applications
+- Functional testing of UI components
 
-The Controller Layer handles the communication with different platforms, such as web browsers and Android devices. It abstracts the complexity of each platform's automation tools (e.g., Selenium for web and UIAutomator for Android) and provides a unified interface for higher-level components in the framework to interact with.
+PyAutoTk leverages Selenium for web automation, providing a flexible and powerful way to interact with complex UI elements. Stay tuned as we continue to expand support for mobile platforms.
 
-### Key Components:
+## How PyAutoTk Works
 
-- BaseController: Defines common interfaces and functionalities shared between different controllers.
-- BrowserController: Manages interactions with web applications using Selenium.
-- AndroidController: Manages interactions with Android devices using UIAutomator.
+The framework follows a layered architecture that promotes separation of concerns and modularity. PyAutoTk provides the following key modules:
 
-2. Toolkit Layer
+- `Core Module:` Manages the browser session and handles platform-specific configurations.
+- `Elements Module:` Contains components like Widget for interacting with UI elements.
+- `Helpers Module:` Provides utilities and decorators for session management.
 
-The Toolkit Layer serves as the core component library of the framework, containing all the building blocks required for creating robust automation scripts. It includes Widgets, Screens, and Utility functions that rely on the Controller Layer for platform-specific interactions.
+### Example: Getting Started with a Simple Script
 
-### Key Components:
+The script below demonstrates a basic use of PyAutoTk to automate a Google Search.
 
-- Widgets: Individual UI elements such as buttons, text inputs, and dropdowns, encapsulated in reusable classes.
-- Screens: Implementations of the Page Object Pattern to organize interactions with complex interfaces, making scripts more readable and maintainable.
-- Utilities: Helper functions and classes for handling common operations like string manipulation, waiting for elements, and dealing with data formats.
+```python
+from pyautotk.elements.widget import Widget
+from pyautotk.elements.helpers.session_helpers import browser_session
+from pyautotk.core.config_loader import config
 
-## Getting Started
+# Configure the framework
+config.log_level = "DEBUG"
+config.browser_type = "chrome"
 
-To get started with PyAutoTk, follow these basic steps:
+@browser_session(url="https://www.google.com")
+def search_google(session, search_query="PyAutoTk"):
+    search_input = Widget(session, aria_label="Search")
+    search_input.enter_text(search_query)
+    search_button = Widget(session, aria_label="Google Search")
+    search_button.click()
+```
 
-- Installation: Install the package from PyPI.
+## Community and Support
 
-´´´bash
-pip install pyautotk
-´´´
+For more information and resources, check out the links below:
+- [Documentation on ReadTheDocs:](https://pyautotk.readthedocs.io/en/latest/) Read the complete documentation online.
 
-- Configure Controllers: Depending on your target platform, initialize the appropriate controller (e.g., BrowserController for web or AndroidController for mobile).
-- Create a Screen: Use the Toolkit layer to define screens and their associated widgets using the Page Object Pattern.
-- Develop Scripts: Build scripts that utilize the defined screens, interact with widgets, and leverage the logging and resource management capabilities.
-
-## Example Usage
-
-Below is a basic example of how to set up a screen and automate a simple login scenario:
-
-Define the Login Screen: Define a LoginScreen class using the Screen and Widget components from the Toolkit layer. This class will represent the login page of your application, making it easy to interact with the login fields and buttons.
-
-Implement Automation Flow: Utilize the BrowserController to interact with the login screen, inputting values, clicking buttons, and validating results.
-
-
-## License
-
-PyAutoTk is licensed under the MIT License. See the LICENSE file for more details.
-Community and Support
-
-For questions, support, or to share ideas, feel free to open an issue on GitHub. We welcome discussions and collaborations to help improve the framework and expand its capabilities.
+For more examples and tutorials, visit the `examples` directory on the [GitHub repository](https://github.com/brailog/PyAutoTk/tree/main/pyautotk/examples).

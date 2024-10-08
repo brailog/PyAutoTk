@@ -1,5 +1,24 @@
-=================
-Introduction
-=================
+===========================
+Introduction to PyAutoTk
+===========================
 
-Introduction to framework PyAutoTk.
+Welcome to the PyAutoTk documentation!
+
+PyAutoTk is a modular and extensible automation framework designed to simplify the process of creating, managing, and executing automation scripts for both web and mobile platforms. The framework is built around the Page Object Model pattern and provides a rich set of tools for building automation scripts that are easy to maintain, read, and expand.
+
+Key features of PyAutoTk:
+
+- **Cross-Platform Support**: The framework supports both web and mobile automation (Android support coming soon!).
+- **Layered Architecture**: Separate the control logic from the UI elements using `Controllers` and `Toolkits`.
+- **Page Object Pattern**: Simplify your automation flows by using the industry-standard Page Object Pattern.
+- **High Customizability**: Easily extend and configure the framework to suit your specific needs.
+
+#### **When to Use PyAutoTk?**
+
+PyAutoTk is ideal for developers and QA engineers who need a structured framework for automating:
+
+- Web application testing
+- Data scraping from web applications
+- Functional testing of UI components
+
+PyAutoTk leverages Selenium for web automation, providing a flexible and powerful way to interact with complex UI elements. Stay tuned as we continue to expand support for mobile platforms.
