@@ -7,7 +7,7 @@ config.log_level = "DEBUG"
 
 
 @browser_session(url="https://www.youtube.com/")
-def watch_shorts(session, swipe_times=10):
+def watch_shorts(session, swipe_times=5):
     Widget(session, text="Shorts").click()
     button_down = Widget(session, id="navigation-button-down")
     for swipe in range(swipe_times):
@@ -28,3 +28,7 @@ def main():
     search_google()
     print("Running YouTube Shorts example...")
     watch_shorts()
+
+
+if __name__ == "__main__":
+    main()

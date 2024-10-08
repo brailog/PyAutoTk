@@ -10,6 +10,8 @@ from pyautotk.core.config_loader import config
 FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
 FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"
 
+CHROME_BIN = "/usr/bin/google-chrome"
+
 
 class BrowserController:
     """
@@ -150,11 +152,18 @@ class BrowserController:
             options.binary_location = FIREFOX_BIN
             if self.headless:
                 options.add_argument("--headless")
-
             firefox_service = webdriver.firefox.service.Service(executable_path=FIREFOXDRIVE_BIN)
             driver = webdriver.Firefox(service=firefox_service, options=options)
+        elif self.browser_type == "chrome":
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.binary_location = CHROME_BIN
+            if self.headless:
+                chrome_options.add_argument("--headless")
+
+            driver = webdriver.Chrome(options=chrome_options)
         else:
             raise ValueError(f"Unsupported browser type: {self.browser_type}")
         if self.maximize:
             driver.maximize_window()
+
         return driver
