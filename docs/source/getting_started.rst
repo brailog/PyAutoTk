@@ -27,6 +27,7 @@ Creating Your First Script
 Here is a quick script to open Google and search for "PyAutoTk":
 
 .. code-block:: python
+
     from pyautotk.elements.widget import Widget
     from pyautotk.elements.helpers.session_helpers import browser_session
 
@@ -40,7 +41,5 @@ Here is a quick script to open Google and search for "PyAutoTk":
     if __name__ == '__main__':
         search_google()
 
-Save this script as google_search.py and run it using:
 
-.. code-block:: bash
-    python google_search.py
+Save this script and Run!
