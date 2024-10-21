@@ -41,6 +41,9 @@ class Widget:
             self.logger.error(f"Failed to click on element with XPath: {self.xpath}. Error: {e}")
             raise
 
+    def hover(self, timeout: int = 10) -> None:
+        self.controller.hover_element(self.xpath)
+
     def enter_text(self, text: str, timeout: int = 10) -> None:
         """
         Enters text into the element (e.g., an input field) identified by the XPath.

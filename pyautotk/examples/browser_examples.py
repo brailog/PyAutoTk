@@ -9,7 +9,7 @@ config.log_level = "DEBUG"
 @browser_session(url="https://www.youtube.com/")
 def watch_shorts(session, swipe_times=5):
     Widget(session, text="Shorts").click()
-    button_down = Widget(session, id="navigation-button-down")
+    button_down = Widget(session, aria_label="Next video")
     for swipe in range(swipe_times):
         button_down.wait_for()
         button_down.click()

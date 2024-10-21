@@ -4,6 +4,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from pyautotk.core.logger_utils import initialize_logger
 from pyautotk.core.config_loader import config
 
@@ -67,7 +68,7 @@ class BrowserController:
         """
         self.logger.debug(f"Searching for a element using the following xpath: {xpath}")
         return WebDriverWait(self.driver, timeout).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
+            EC.element_to_be_clickable((By.XPATH, xpath))
         )
 
     def click_element(self, xpath: str, timeout: int = 10) -> None:
@@ -83,7 +84,12 @@ class BrowserController:
         """
         self.logger.debug(f"Click a element using the following xpath: {xpath}")
         element = self.find_element(xpath, timeout)
-        element.click()
+        self.driver.execute_script("arguments[0].click();", element)
+
+    def hover_element(self, xpath: str, timeout: int = 10) -> None:
+        element = self.find_element(xpath)
+        hover = ActionChains(self.driver).move_to_element(element)
+        hover.perform()
 
     def enter_text(self, xpath: str, text: str, timeout: int = 10) -> None:
         """

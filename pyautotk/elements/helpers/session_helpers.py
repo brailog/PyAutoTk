@@ -7,6 +7,7 @@ def browser_session(
     browser_type: str = "firefox",
     maximize: bool = False,
     headless: bool = False,
+    kill_browser: bool = True,
 ):
     """
     A decorator that manages a browser session using the BrowserController, with support for configuring
@@ -47,7 +48,8 @@ def browser_session(
                 session.open_url(url)
                 return func(session, *args, **kwargs)
             finally:
-                session.kill_browser()
+                if kill_browser:
+                    session.kill_browser()
 
         return wrapper
 
