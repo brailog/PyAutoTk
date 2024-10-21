@@ -1,17 +1,24 @@
 from typing import Any
+from platform import system
+
 from selenium import webdriver
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.remote.webdriver import WebDriver
+
 from pyautotk.core.logger_utils import initialize_logger
 from pyautotk.core.config_loader import config
 
-FIREFOX_BIN = "/snap/firefox/current/usr/lib/firefox/firefox"
-FIREFOXDRIVE_BIN = "/snap/firefox/current/usr/lib/firefox/geckodriver"
+FIREFOX_BIN_LINUX = "/snap/firefox/current/usr/lib/firefox/firefox"
+FIREFOXDRIVE_BIN_LINUX = "/snap/firefox/current/usr/lib/firefox/geckodriver"
+CHROME_BIN_LINUX = "/usr/bin/google-chrome"
 
-CHROME_BIN = "/usr/bin/google-chrome"
+FIREFOX_BIN_WINDOWS = r"C:\Program Files\Mozilla Firefox\firefox.exe"
+CHROME_BIN_WINDOWS = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
 class BrowserController:
@@ -25,11 +32,12 @@ class BrowserController:
         Initializes the BrowserController with the specified browser configuration.
 
         Args:
-            browser_type (str): The type of browser to use. Supported values: 'firefox'. Default is 'firefox'.
+            browser_type (str): The type of browser to use. Supported values: 'firefox' and 'chrome'. Default is 'firefox'.
             maximize (bool): Whether to maximize the browser window on startup. Default is False.
             headless (bool): Whether to run the browser in headless mode. Default is False.
         """
         self.logger = initialize_logger(self.__class__.__name__)
+        self.os_type = system()
         self.browser_type = browser_type.lower() or config.browser_type
         self.maximize = maximize or config.maximize_browser
         self.headless = headless or config.headless_mode
@@ -87,7 +95,7 @@ class BrowserController:
         self.driver.execute_script("arguments[0].click();", element)
 
     def hover_element(self, xpath: str, timeout: int = 10) -> None:
-        element = self.find_element(xpath)
+        element = self.find_element(xpath, timeout)
         hover = ActionChains(self.driver).move_to_element(element)
         hover.perform()
 
@@ -153,22 +161,37 @@ class BrowserController:
             ValueError: If the specified `browser_type` is not supported.
         """
         self.logger.debug("Init driver")
+
+        if self.os_type == "Windows":
+            firefox_bin = FIREFOX_BIN_WINDOWS
+            firefox_driver_bin = ""
+            chrome_bin = CHROME_BIN_WINDOWS
+        else:
+            firefox_bin = FIREFOX_BIN_LINUX
+            firefox_driver_bin = FIREFOXDRIVE_BIN_LINUX
+            chrome_bin = CHROME_BIN_LINUX
+
         if self.browser_type == "firefox":
             options = webdriver.firefox.options.Options()
-            options.binary_location = FIREFOX_BIN
+            options.binary_location = firefox_bin
             if self.headless:
                 options.add_argument("--headless")
-            firefox_service = webdriver.firefox.service.Service(executable_path=FIREFOXDRIVE_BIN)
+
+            firefox_service = FirefoxService(executable_path=firefox_driver_bin)
             driver = webdriver.Firefox(service=firefox_service, options=options)
+
         elif self.browser_type == "chrome":
             chrome_options = webdriver.ChromeOptions()
-            chrome_options.binary_location = CHROME_BIN
+            chrome_options.binary_location = chrome_bin
             if self.headless:
                 chrome_options.add_argument("--headless")
 
-            driver = webdriver.Chrome(options=chrome_options)
+            chrome_service = ChromeService()
+            driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+
         else:
             raise ValueError(f"Unsupported browser type: {self.browser_type}")
+
         if self.maximize:
             driver.maximize_window()
 

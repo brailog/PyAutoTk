@@ -4,7 +4,7 @@ from pyautotk.core.browser_controller import BrowserController
 
 def browser_session(
     url: str,
-    browser_type: str = "firefox",
+    browser_type: str = "",
     maximize: bool = False,
     headless: bool = False,
     kill_browser: bool = True,
@@ -19,7 +19,7 @@ def browser_session(
 
     Args:
         url (str): The URL to open when starting the browser session.
-        browser_type (str): The type of browser to use. Supported values are 'firefox' or 'chrome'. Default is 'firefox'.
+        browser_type (str): The type of browser to use. Supported values are 'firefox' or 'chrome'. Default is 'chrome'.
         maximize (bool): Whether to start the browser maximized. Default is False.
         headless (bool): Whether to run the browser in headless mode. Default is False.
 

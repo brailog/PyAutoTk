@@ -1,13 +1,24 @@
-# PyAutoTk
+# PyAutoTk Framework Documentation
 
-Welcome to the PyAutoTk documentation!
-PyAutoTk is a modular and extensible automation framework designed to simplify the process of creating, managing, and executing automation scripts for both web and mobile platforms. The framework is built around the Page Object Model pattern and provides a rich set of tools for building automation scripts that are easy to maintain, read, and expand.
+**PyAutoTk** is a modular and extensible automation framework designed to simplify the process of creating, managing, and executing automation scripts for web platforms.
 
-### Key features of PyAutoTk:
-- `Cross-Platform Support:` The framework supports both web and mobile automation (Android support coming soon!).
-- `Layered Architecture:` Separate the control logic from the UI elements using Controllers and Toolkits.
-- `Page Object Pattern:` Simplify your automation flows by using the industry-standard Page Object Pattern.
-- `High Customizability:` Easily extend and configure the framework to suit your specific needs.
+## Getting Started
+
+You have two options to get started with PyAutoTk:
+
+1. **Cloning the repository and installing as a developer:**
+
+```bash
+git clone https://github.com/brailog/PyAutoTk.git
+cd PyAutoTk
+pip install -e .
+```
+2. **Installing PyAutoTk from PyPI:**
+```bash
+pip install pyautotk
+```
+
+Once installed, you can begin using the framework to automate your web application.
 
 ## When to Use PyAutoTk?
 
@@ -17,40 +28,58 @@ PyAutoTk is ideal for developers and QA engineers who need a structured framewor
 - Data scraping from web applications
 - Functional testing of UI components
 
-PyAutoTk leverages Selenium for web automation, providing a flexible and powerful way to interact with complex UI elements. Stay tuned as we continue to expand support for mobile platforms.
+PyAutoTk leverages Selenium for web automation, providing a flexible and powerful way to interact with complex UI elements. As the framework evolves, there will be support for mobile platforms as well.
 
-## How PyAutoTk Works
+## How to Use PyAutoTk
 
-The framework follows a layered architecture that promotes separation of concerns and modularity. PyAutoTk provides the following key modules:
+Let's walk through an example to help you get started with PyAutoTk.
+### Example Script
 
-- `Core Module:` Manages the browser session and handles platform-specific configurations.
-- `Elements Module:` Contains components like Widget for interacting with UI elements.
-- `Helpers Module:` Provides utilities and decorators for session management.
-
-### Example: Getting Started with a Simple Script
-
-The script below demonstrates a basic use of PyAutoTk to automate a Google Search.
+Create a new file called `pyautotk_example.py` and copy the following code:
 
 ```python
+import time
 from pyautotk.elements.widget import Widget
 from pyautotk.elements.helpers.session_helpers import browser_session
-from pyautotk.core.config_loader import config
+from pyautotk.core.exceptions import ElementNotVisibleException
 
-# Configure the framework
-config.log_level = "DEBUG"
-config.browser_type = "chrome"
+@browser_session(url="https://www.youtube.com/")
+def watch_shorts(session, swipe_times=5):
+    Widget(session, text="Shorts").click()
+    en_button_down = Widget(session, aria_label="Next video")
+    pt_button_down = Widget(session, aria_label="Proximo vídeo")
+    for swipe in range(swipe_times):
+        try:
+            en_button_down.wait_for()
+            en_button_down.click()
+        except ElementNotVisibleException:
+            pt_button_down.wait_for()
+            pt_button_down.click()
+        time.sleep(1)
 
-@browser_session(url="https://www.google.com")
-def search_google(session, search_query="PyAutoTk"):
-    search_input = Widget(session, aria_label="Search")
-    search_input.enter_text(search_query)
-    search_button = Widget(session, aria_label="Google Search")
-    search_button.click()
+watch_shorts()
+```
+Save the file and run the script using the following command:
+```bash
+python3 pyautotk_example.py
 ```
 
-## Community and Support
+## Explanation of the Example
 
-For more information and resources, check out the links below:
-- [Documentation on ReadTheDocs:](https://pyautotk.readthedocs.io/en/latest/) Read the complete documentation online.
+- **Importing Key Components:** The example imports `browser_session` to create a session with the browser and `Widget` to interact with UI elements.
+- **`browser_session` Decorator:** This decorator is essential to open the browser and navigate to the specified URL. In this case, we navigate to YouTube to view "Shorts". Optional parameters such as browser type, headless mode, and maximization can be set globally using `config_loader`.
+- **Handling Language Differences:** The example demonstrates how to handle potential language differences by creating two Widget instances — one for English (`Next video`) and another for Portuguese (`Proximo vídeo`), ensuring the script works regardless of the browser language.
 
-For more examples and tutorials, visit the `examples` directory on the [GitHub repository](https://github.com/brailog/PyAutoTk/tree/main/pyautotk/examples).
+
+### Global Configuration Example
+
+You can configure PyAutoTk globally using the config_loader. This allows you to adjust logging levels, browser types, and other settings.
+```python
+from pyautotk.core.config_loader import config
+
+config.log_level = "DEBUG"
+config.browser_type = "firefox"
+config.headless_mode = False
+config.maximize_browser = True
+```
+For more details, refer to the official documentation [here](https://pyautotk.readthedocs.io/en/latest/)

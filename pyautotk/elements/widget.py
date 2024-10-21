@@ -1,6 +1,7 @@
 import re
 from typing import Dict, Any
 from pyautotk.core.logger_utils import initialize_logger
+from pyautotk.core.exceptions import ElementNotVisibleException
 
 
 class Widget:
@@ -97,7 +98,7 @@ class Widget:
             return element
         except Exception as e:
             self.logger.error(f"Failed to wait for element with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise ElementNotVisibleException(self.xpath, timeout, e)
 
     @staticmethod
     def get_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, str]:
