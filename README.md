@@ -1,4 +1,4 @@
-# PyAutoTk Framework Documentation
+# PyAutoTk
 
 **PyAutoTk** is a modular and extensible automation framework designed to simplify the process of creating, managing, and executing automation scripts for web platforms.
 
