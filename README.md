@@ -47,7 +47,7 @@ from pyautotk.core.exceptions import ElementNotVisibleException
 def watch_shorts(session, swipe_times=5):
     Widget(session, text="Shorts").click()
     en_button_down = Widget(session, aria_label="Next video")
-    pt_button_down = Widget(session, aria_label="Proximo vídeo")
+    pt_button_down = Widget(session, aria_label="Proximo Vídeo")
     for swipe in range(swipe_times):
         try:
             en_button_down.wait_for()
