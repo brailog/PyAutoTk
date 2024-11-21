@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-21 17:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../source/browser_session.rst:2
+msgid "Browser Session"
+msgstr ""
+
+#: ../source/browser_session.rst:4
+msgid ""
+"``browser_session`` manages browser sessions. It initializes, configures,"
+" and automatically closes browsers used in automation tasks."
+msgstr ""
+
+#: ../source/browser_session.rst:6
+msgid "**Basic Parameters:**"
+msgstr ""
+
+#: ../source/browser_session.rst:8
+msgid "``url``: Initial page URL."
+msgstr ""
+
+#: ../source/browser_session.rst:9
+msgid "``browser_type``: Browser type (default: ``chrome``)."
+msgstr ""
+
+#: ../source/browser_session.rst:10
+msgid ""
+"``headless``: Runs the browser without a graphical interface if set to "
+"``True``."
+msgstr ""
+
+#: ../source/browser_session.rst:11
+msgid ""
+"``kill_browser``: Keeps the browser open after the session finishes if "
+"set to ``False``."
+msgstr ""
+
+#: ../source/browser_session.rst:12
+msgid ""
+"``maximize``: Starts the session with the browser maximized if set to "
+"``True``."
+msgstr ""
+
+#: ../source/browser_session.rst:15
+msgid "**Usage Example:**"
+msgstr ""
+
