@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-21 17:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../source/getting_started.rst:2
+msgid "Getting Started"
+msgstr ""
+
+#: ../source/getting_started.rst:5
+msgid "Requirements"
+msgstr ""
+
+#: ../source/getting_started.rst:6
+msgid "Python 3.6 or higher."
+msgstr ""
+
+#: ../source/getting_started.rst:7
+msgid "Installed compatible browsers (Chrome, Firefox)."
+msgstr ""
+
+#: ../source/getting_started.rst:10
+msgid "Installation"
+msgstr ""
+
+#: ../source/getting_started.rst:11
+msgid "Install directly from PyPI::"
+msgstr ""
+
+#: ../source/getting_started.rst:15
+msgid "Or install from the repository::"
+msgstr ""
+
+#: ../source/getting_started.rst:22
+msgid "Example Code"
+msgstr ""
+
+#: ../source/getting_started.rst:43
+msgid ""
+"The example script provided is configured for a browser in Portuguese "
+"(pt-BR). To adapt it for English or other languages, ensure the text used"
+" in the `aria_label` or other attributes matches the native language of "
+"your browser."
+msgstr ""
+
+#: ../source/getting_started.rst:47
+msgid ""
+"For instance: - In Portuguese: ``\"Próximo Vídeo\"`` - In English: "
+"``\"Next video\"``"
+msgstr ""
+
+#: ../source/getting_started.rst:51
+msgid "Update the script accordingly to avoid errors during execution."
+msgstr ""
+

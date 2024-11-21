@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-21 17:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../source/page_obj.rst:2
+msgid "Page Object"
+msgstr ""
+
+#: ../source/page_obj.rst:4
+msgid "**What is a Page Object?**"
+msgstr ""
+
+#: ../source/page_obj.rst:6
+msgid ""
+"Page Object Model (POM) is a design pattern that promotes separation of "
+"concerns. Instead of defining actions directly in scripts, you "
+"encapsulate logic in classes that represent pages or UI components."
+msgstr ""
+
+#: ../source/page_obj.rst:9
+msgid "Practical Example with PyAutoTk"
+msgstr ""
+
+#: ../source/page_obj.rst:10
+msgid "Using the provided local template, let’s automate a contact form:"
+msgstr ""
+
+#: ../source/page_obj.rst:30
+msgid "Using in a Script:"
+msgstr ""
+
+#: ../source/page_obj.rst:50
+msgid ""
+"You can clone the PyAutoTk repository to access a fully functional "
+"example page along with pre-structured Page Object implementations. This "
+"example is located at the following path:"
+msgstr ""
+
+#: ../source/page_obj.rst:52
+msgid ""
+"`PyAutoTk Examples <https://github.com/brailog/PyAutoTk/tree/page-"
+"obj/pyautotk/examples>`_"
+msgstr ""
+
+#: ../source/page_obj.rst:54
+msgid "The repository provides:"
+msgstr ""
+
+#: ../source/page_obj.rst:56
+msgid "A sample webpage for testing automation."
+msgstr ""
+
+#: ../source/page_obj.rst:57
+msgid "A ready-to-use Page Object structure."
+msgstr ""
+
+#: ../source/page_obj.rst:58
+msgid "Example scripts demonstrating how to interact with the library."
+msgstr ""
+
+#: ../source/page_obj.rst:60
+msgid ""
+"Cloning the repository is a great way to quickly get started and explore "
+"the full potential of PyAutoTk in a practical setting."
+msgstr ""
+

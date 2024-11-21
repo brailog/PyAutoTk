@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-21 17:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../source/pyautotk.core.rst:2
+msgid "pyautotk.core package"
+msgstr ""
+
+#: ../source/pyautotk.core.rst:5
+msgid "Submodules"
+msgstr ""
+
+#: ../source/pyautotk.core.rst:8
+msgid "pyautotk.core.browser\\_controller module"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController:1
+msgid "Bases: :py:class:`object`"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController:1
+msgid ""
+"Manages interactions with a web browser using Selenium, providing a high-"
+"level API for navigation, element handling, and browser control. Supports"
+" configurable options such as browser type, headless mode, and "
+"maximization."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.__init__:1
+msgid ""
+"Initializes the BrowserController with the specified browser "
+"configuration."
+msgstr ""
+
+#: ../source/pyautotk.core.rst
+msgid "Parameters"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.__init__:4
+msgid ""
+"The type of browser to use. Supported values: 'firefox' and 'chrome'. "
+"Default is 'firefox'."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.__init__:7
+msgid "Whether to maximize the browser window on startup. Default is False."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.__init__:10
+msgid "Whether to run the browser in headless mode. Default is False."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.click_element:1
+msgid "Clicks on the element specified by the given XPath."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.click_element:4
+msgid "The XPath locator string for the element to be clicked."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.click_element:7
+#: pyautotk.core.browser_controller.BrowserController.enter_text:10
+#: pyautotk.core.browser_controller.BrowserController.find_element:7
+#: pyautotk.core.browser_controller.BrowserController.scroll_to_element:7
+msgid ""
+"The maximum time (in seconds) to wait for the element to be located. "
+"Default is 10 seconds."
+msgstr ""
+
+#: ../source/pyautotk.core.rst
+msgid "Raises"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.click_element:10
+#: pyautotk.core.browser_controller.BrowserController.enter_text:13
+#: pyautotk.core.browser_controller.BrowserController.find_element:13
+#: pyautotk.core.browser_controller.BrowserController.scroll_to_element:10
+#: pyautotk.core.browser_controller.BrowserController.wait_for_element:13
+msgid "If the element is not found within the given time."
+msgstr ""
+
+#: ../source/pyautotk.core.rst
+msgid "Return type"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.click_element:12
+#: pyautotk.core.browser_controller.BrowserController.enter_text:15
+#: pyautotk.core.browser_controller.BrowserController.hover_element:2
+#: pyautotk.core.browser_controller.BrowserController.kill_browser:4
+#: pyautotk.core.browser_controller.BrowserController.open_url:7
+#: pyautotk.core.browser_controller.BrowserController.scroll_to_element:12
+msgid ":sphinx_autodoc_typehints_type:`\\:py\\:obj\\:\\`None\\``"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.enter_text:1
+msgid ""
+"Enters the specified text into a text input field identified by the given"
+" XPath."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.enter_text:4
+msgid "The XPath locator string for the input field."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.enter_text:7
+msgid "The text to be entered into the field."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.find_element:1
+msgid "Locates and returns a web element based on the given XPath."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.find_element:4
+msgid "The XPath locator string for the desired element."
+msgstr ""
+
+#: ../source/pyautotk.core.rst
+msgid "Returns"
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.find_element:10
+msgid "The located WebElement."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.kill_browser:1
+msgid "Closes the browser and ends the WebDriver session."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.open_url:1
+msgid "Opens the specified URL in the browser."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.open_url:4
+msgid "The URL to open in the browser."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.scroll_to_element:1
+msgid ""
+"Scrolls the page until the element identified by the given XPath is in "
+"view."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.scroll_to_element:4
+msgid "The XPath locator string for the element to scroll to."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.wait_for_element:1
+msgid "Waits until the element identified by the given XPath is visible."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.wait_for_element:4
+msgid "The XPath locator string for the element to wait for."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.wait_for_element:7
+msgid ""
+"The maximum time (in seconds) to wait for the element to become visible. "
+"Default is 10 seconds."
+msgstr ""
+
+#: of pyautotk.core.browser_controller.BrowserController.wait_for_element:10
+msgid "The WebElement if found and visible, or raises an exception if not found."
+msgstr ""
+
+#: ../source/pyautotk.core.rst:16
+msgid "pyautotk.core.config\\_loader module"
+msgstr ""
+
+#: ../source/pyautotk.core.rst:24
+msgid "pyautotk.core.exceptions module"
+msgstr ""
+
+#: of pyautotk.core.exceptions.ElementNotVisibleException:1
+msgid "Bases: :py:class:`Exception`"
+msgstr ""
+
+#: of pyautotk.core.exceptions.ElementNotVisibleException:1
+msgid ""
+"Custom exception raised when an element is not visible within the "
+"specified timeout."
+msgstr ""
+
+#: of pyautotk.core.exceptions.ElementNotVisibleException.with_traceback:1
+msgid ""
+"Exception.with_traceback(tb) -- set self.__traceback__ to tb and return "
+"self."
+msgstr ""
+
+#: ../source/pyautotk.core.rst:32
+msgid "pyautotk.core.logger\\_utils module"
+msgstr ""
+
+#: of pyautotk.core.logger_utils.initialize_logger:1
+msgid "Initializes and configures the logger"
+msgstr ""
+
+#: of pyautotk.core.logger_utils.initialize_logger:4
+msgid ""
+"The name to use for the logger. Helps in identifying logs from different "
+"components."
+msgstr ""
+
+#: of pyautotk.core.logger_utils.initialize_logger:7
+msgid "The minimum log level to capture. Default is \"INFO\"."
+msgstr ""
+
+#: of pyautotk.core.logger_utils.initialize_logger:10
+msgid ""
+"If provided, logs will be written to the specified file path. Default is "
+"None."
+msgstr ""
+
+#: of pyautotk.core.logger_utils.initialize_logger:13
+msgid "Configured logger instance with the specified name."
+msgstr ""
+
+#: ../source/pyautotk.core.rst:40
+msgid "Module contents"
+msgstr ""
+

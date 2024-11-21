@@ -23,6 +23,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.autosummary",
+    "sphinx_autodoc_typehints",
 ]
 
 templates_path = ["_templates"]
@@ -34,6 +35,9 @@ exclude_patterns = []
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+language = 'en'
+locale_dirs = ['locale/']  # Diretório para arquivos de tradução
+gettext_compact = False   # Melhor para ferramentas de tradução
 
 autosummary_generate = True
 
@@ -44,4 +48,19 @@ html_sidebars = {
         "sourcelink.html",  # link to view the source
         "searchbox.html",  # search box
     ]
+}
+
+html_theme_options = {
+    "navigation_depth": 3,  # Número de níveis exibidos no menu lateral
+    "collapse_navigation": False,  # Expande todas as seções do menu
+    "sticky_navigation": True,  # Fixa o menu lateral ao rolar a página
+}
+
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": False,  # Defina como True se quiser incluir membros privados
+    "special-members": "__init__",  # Inclui métodos especiais como __init__
+    "inherited-members": True,
+    "show-inheritance": True,
 }

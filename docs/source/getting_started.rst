@@ -1,45 +1,51 @@
-=========================
-Getting Started with PyAutoTk
-=========================
+Getting Started
+===============
 
-In this guide, we will show you how to get started with PyAutoTk. We'll cover installation, basic configuration, and a simple script example.
-
-Prerequisites
-=================
-
-- Python 3.8 or later.
-- Pip package manager.
-- (Optional) Firefox and Chrome browsers installed if you plan to run browser-based tests.
+Requirements
+------------
+- Python 3.6 or higher.
+- Installed compatible browsers (Chrome, Firefox).
 
 Installation
-=================
-To install PyAutoTk, run the following command:
+------------
+Install directly from PyPI::
 
-```bash
-pip install pyautotk
-```
+    pip install pyautotk
 
-This command installs the core components of PyAutoTk and its dependencies (such as Selenium).
+Or install from the repository::
 
-Creating Your First Script
-============================
+    git clone https://github.com/brailog/PyAutoTk.git
+    cd pyautotk
+    pip install -e .
 
-Here is a quick script to open Google and search for "PyAutoTk":
-
+Example Code
+------------
 .. code-block:: python
 
-    from pyautotk.elements.widget import Widget
-    from pyautotk.elements.helpers.session_helpers import browser_session
-
-    @browser_session(url="https://www.google.com")
-    def search_google(session, search_query="PyAutoTk"):
-        search_input = Widget(session, aria_label="Search")
-        search_input.enter_text(search_query)
-        search_button = Widget(session, aria_label="Google Search")
-        search_button.click()
-
-    if __name__ == '__main__':
-        search_google()
+   import time
+   from pyautotk.elements.widget import Widget
+   from pyautotk.elements.helpers.session_helpers import browser_session
 
 
-Save this script and Run!
+   @browser_session(url="https://www.youtube.com/")
+   def watch_shorts(session, swipe_times=5):
+      Widget(session, text="Shorts").click()
+      pt_button_down = Widget(session, aria_label="Proximo Vídeo")
+      for _ in range(swipe_times):
+         pt_button_down.wait_for()
+         pt_button_down.click()
+         time.sleep(1)
+
+    watch_shorts()
+
+.. attention::
+
+   The example script provided is configured for a browser in Portuguese (pt-BR). 
+   To adapt it for English or other languages, ensure the text used in the `aria_label` 
+   or other attributes matches the native language of your browser.
+
+   For instance:
+   - In Portuguese: ``"Próximo Vídeo"``
+   - In English: ``"Next video"``
+
+   Update the script accordingly to avoid errors during execution.

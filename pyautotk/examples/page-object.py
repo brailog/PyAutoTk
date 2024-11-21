@@ -26,18 +26,18 @@ class Arsha:
 
 class ArshaMainSection:
     def __init__(self, session) -> None:
-        self.arshe = Arsha(session)
         self.session = session
-        self.get_started_btn = Widget(self.session, class_="btn-get-started scrollto")
+        self.get_started_btn = Widget(self.session, text="Get Started", class_="btn-get-started scrollto")
+        self.get_started_btn = Widget(self.session, text="Get Started", class_="getstarted scrollto")
         self.watch_video_btn = Widget(self.session, text="Watch Video")
-
-    def press_get_started(self) -> None:
-        self.get_started_btn.click()
 
     def watch_main_video(self, duration: float = 5.5) -> None:
         self.watch_video_btn.click()
         time.sleep(duration)
         Widget(self.session, aria_label="Close").click()
+
+    def press_get_started(self) -> None:
+        self.get_started_btn.click()
 
 
 class Portfolio:
