@@ -41,24 +41,27 @@ Create a new file called `pyautotk_example.py` and copy the following code:
 import time
 from pyautotk.elements.widget import Widget
 from pyautotk.elements.helpers.session_helpers import browser_session
-from pyautotk.core.exceptions import ElementNotVisibleException
 
 @browser_session(url="https://www.youtube.com/")
 def watch_shorts(session, swipe_times=5):
     Widget(session, text="Shorts").click()
-    en_button_down = Widget(session, aria_label="Next video")
     pt_button_down = Widget(session, aria_label="Proximo Vídeo")
-    for swipe in range(swipe_times):
-        try:
-            en_button_down.wait_for()
-            en_button_down.click()
-        except ElementNotVisibleException:
-            pt_button_down.wait_for()
-            pt_button_down.click()
+    for _ in range(swipe_times):
+        pt_button_down.click()
         time.sleep(1)
 
 watch_shorts()
 ```
+> ⚠️ **Warning**  
+> The example script provided is configured for a browser in **Portuguese (pt-BR)**.  
+> To adapt it for English or other languages, ensure the text used in the `aria_label` or other attributes matches the native language of your browser.  
+>
+> **For instance:**  
+> - In Portuguese: `"Próximo Vídeo"`  
+> - In English: `"Next video"`  
+>
+> Update the script accordingly to avoid errors during execution.
+
 Save the file and run the script using the following command:
 ```bash
 python3 pyautotk_example.py
