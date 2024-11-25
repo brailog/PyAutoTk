@@ -34,7 +34,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-language = "br"
+language = 'pt_BR'
 locale_dirs = ['locale/']  # Diretório para arquivos de tradução
 gettext_compact = False   # Melhor para ferramentas de tradução
 
