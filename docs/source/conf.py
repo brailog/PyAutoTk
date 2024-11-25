@@ -63,3 +63,9 @@ autodoc_default_options = {
     "inherited-members": True,
     "show-inheritance": True,
 }
+
+html_context = {
+    'translations': {
+        'pt_BR': 'https://pyautotk.readthedocs.io/pt-br/dev-icst-br/',
+    }
+}
