@@ -1,7 +1,7 @@
 PyAutoTk: A Simplified Automation
 ==================================
 
-PyAutoTk is a Python library designed to streamline web browser automation. Built on Selenium, it provides a modular and extensible interface for automating tasks such as automated testing, web scraping, and simulating human behavior.
+PyAutoTk is a Python library designed to streamline web browser automation. Built on Selenium, it provides a modular and extensible interface for automating tasks such as automated testing, web scraping, and rotine automation.
 
 When to Use?
 ------------

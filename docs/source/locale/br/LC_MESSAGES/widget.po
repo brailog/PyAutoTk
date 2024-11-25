@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
+# Gabriel Ramos R. Oliveira <bielrammos@gmail.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Gabriel Ramos R. Oliveira <bielrammos@gmail.com>\n"
+"Language: br\n"
+"Language-Team: br <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==1 ? 0 : n%10==1 && n%100!=11 && "
+"n%100!=71 && n%100!=91 ? 1 : n%10==2 && n%100!=12 && n%100!=72 && "
+"n%100!=92 ? 2 : (n%10==3 || n%10==4 || n%10==9) && n%100!=13 && n%100!=14"
+" && n%100!=19 && n%100!=73 && n%100!=74 && n%100!=79 && n%100!=93 && "
+"n%100!=94 && n%100!=99 ? 3 : n%1000000==0 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: ../../widget.rst:2
+msgid "Widget"
+msgstr "Widget"
+
+#: ../../widget.rst:4
+msgid ""
+"Widgets represent UI elements on a web page. They simplify basic "
+"interactions such as clicking, typing, and scrolling without requiring "
+"complex XPath definitions."
+msgstr ""
+"Widgets representam elementos da interface do usuário em uma página web. "
+"Eles simplificam interações básicas, como clicar, digitar e rolar, sem a "
+"necessidade de definições complexas de XPath."
+
+#: ../../widget.rst:6
+msgid "**Key Widget Actions:**"
+msgstr "**Ações Principais dos Widgets:**"
+
+#: ../../widget.rst:8
+msgid "``click``: Click on an element."
+msgstr "``click``: Clica em um elemento."
+
+#: ../../widget.rst:9
+msgid "``enter_text``: Type text into input fields."
+msgstr "``enter_text``: Digita texto em campos de entrada."
+
+#: ../../widget.rst:10
+msgid "``scroll_to``: Scroll to make an element visible."
+msgstr "``scroll_to``: Rola a página para tornar um elemento visível."
+
+#: ../../widget.rst:11
+msgid "``wait_for``: Wait until an element becomes visible."
+msgstr "``wait_for``: Aguarda até que um elemento se torne visível."
+
+#: ../../widget.rst:12
+msgid ""
+"``get_element_properties``: Retrieves the properties of a single element "
+"that matches the given XPath, including attributes, text and visibility "
+"status."
+msgstr ""
+"``get_element_properties``: Recupera as propriedades de um único elemento"
+" que corresponda ao XPath fornecido, incluindo atributos, texto e status "
+"de visibilidade."
+
+#: ../../widget.rst:13
+msgid ""
+"``get_all_elements_properties``: Retrieves the properties of all elements"
+" that match the given XPath, including attributes, text, and visibility "
+"status."
+msgstr ""
+"``get_all_elements_properties``: Recupera as propriedades de todos os "
+"elementos que correspondam ao XPath fornecido, incluindo atributos, texto"
+" e status de visibilidade."
+
+#: ../../widget.rst:15
+msgid "**Basic Example**"
+msgstr "**Exemplo Básico**"
+
+#: ../../widget.rst:32
+msgid ""
+"Update the script accordingly to your browser language to avoid errors "
+"during execution."
+msgstr ""
+"Atualize o script de acordo com o idioma do seu navegador para evitar "
+"erros durante a execução."
+

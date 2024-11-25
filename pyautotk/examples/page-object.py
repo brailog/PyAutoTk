@@ -18,6 +18,7 @@ class Arsha:
         self.top_team_btn = Widget(self.session, class_="nav-link scrollto", text="Team")
         self.top_dropdown_btn = Widget(self.session, class_="bi bi-chevron-down")
         self.top_contact_btn = Widget(self.session, class_="nav-link scrollto", text="Contact")
+        self.get_started_btn = Widget(self.session, text="Get Started", class_="btn-get-started scrollto")
 
     def dropbox_navigate(self):
         self.top_dropdown_btn.click()
@@ -27,17 +28,18 @@ class Arsha:
 class ArshaMainSection:
     def __init__(self, session) -> None:
         self.session = session
-        self.get_started_btn = Widget(self.session, text="Get Started", class_="btn-get-started scrollto")
+        self.arshe = Arsha(session)
         self.get_started_btn = Widget(self.session, text="Get Started", class_="getstarted scrollto")
         self.watch_video_btn = Widget(self.session, text="Watch Video")
 
     def watch_main_video(self, duration: float = 5.5) -> None:
-        self.watch_video_btn.click()
+        try:
+            self.arshe.top_home_btn.click(timeout=3)  # Make sure that are in the top of the page 
+        except:
+            pass
+        self.watch_video_btn.click()  # Click on the expected "Watch Video" button
         time.sleep(duration)
         Widget(self.session, aria_label="Close").click()
-
-    def press_get_started(self) -> None:
-        self.get_started_btn.click()
 
 
 class Portfolio:
@@ -68,13 +70,23 @@ def main(session):
     portifilio_section = Portfolio(session)
     
     arshe_home_section.watch_main_video()
+    data = Widget(session, class_="media-body").get_all_elements_properties()
+
+    # Filtrar todos os valores da chave 'text'
+    texts = [item['text'] for item in data if 'text' in item]
+
+    # Exibir os textos
+    for text in texts:
+        print(text)
+
+    """
     contact_section.fill_contact_form(name="Gabriel", email="g@email.com", subject="dummy", message="dummy dummy dummy dummy dummy")
     time.sleep(1)
     portifilio_section.arshe.top_portfolio_btn.click()
     for option in ["All", "Card", "App", "Web"]:
         portifilio_section.switch_btn(option)
         time.sleep(0.5)
-
+    """
 
 if __name__ == '__main__':
     main()
