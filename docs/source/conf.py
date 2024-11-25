@@ -13,7 +13,7 @@ sys.path.insert(0, "/home/gabriel/Documents/source_workspace/pyautotk")
 project = "PyAutoTk"
 copyright = "2024, Gabriel Ramos R. Oliveira"
 author = "Gabriel Ramos R. Oliveira"
-release = "0.3"
+release = "0.4.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -34,7 +34,7 @@ exclude_patterns = []
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
-language = "br"
+language = "en"
 locale_dirs = ['locale/']  # Diretório para arquivos de tradução
 gettext_compact = False   # Melhor para ferramentas de tradução
 
