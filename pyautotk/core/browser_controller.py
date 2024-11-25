@@ -1,6 +1,6 @@
+import os
 from typing import Any
 from platform import system
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -13,12 +13,12 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from pyautotk.core.logger_utils import initialize_logger
 from pyautotk.core.config_loader import config
 
-FIREFOX_BIN_LINUX = "/snap/firefox/current/usr/lib/firefox/firefox"
-FIREFOXDRIVE_BIN_LINUX = "/snap/firefox/current/usr/lib/firefox/geckodriver"
-CHROME_BIN_LINUX = "/usr/bin/google-chrome"
+FIREFOX_BIN_LINUX = os.path.join("/snap", "firefox", "current", "usr", "lib", "firefox", "firefox")
+FIREFOXDRIVE_BIN_LINUX = os.path.join("/snap", "firefox", "current", "usr", "lib", "firefox", "geckodriver")
+CHROME_BIN_LINUX = os.path.join("/usr", "bin", "google-chrome")
 
-FIREFOX_BIN_WINDOWS = r"C:\Program Files\Mozilla Firefox\firefox.exe"
-CHROME_BIN_WINDOWS = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+FIREFOX_BIN_WINDOWS = os.path.join("C:\\", "Program Files", "Mozilla Firefox", "firefox.exe")
+CHROME_BIN_WINDOWS = os.path.join("C:\\", "Program Files", "Google", "Chrome", "Application", "chrome.exe")
 
 
 class BrowserController:
@@ -75,6 +75,7 @@ class BrowserController:
             TimeoutException: If the element is not found within the given time.
         """
         self.logger.debug(f"Searching for a element using the following xpath: {xpath}")
+        self.wait_for_element(xpath)
         return WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
@@ -99,22 +100,26 @@ class BrowserController:
         hover = ActionChains(self.driver).move_to_element(element)
         hover.perform()
 
-    def enter_text(self, xpath: str, text: str, timeout: int = 10) -> None:
+    def enter_text_safely(self, xpath: str, text: str, timeout: int = 10) -> None:
         """
-        Enters the specified text into a text input field identified by the given XPath.
+        Enters the specified text into a text input field safely by focusing on the element before interacting.
 
         Args:
             xpath (str): The XPath locator string for the input field.
             text (str): The text to be entered into the field.
-            timeout (int): The maximum time (in seconds) to wait for the element to be located. Default is 10 seconds.
+            timeout (int): Maximum time (in seconds) to wait for the element to be located. Default is 10 seconds.
 
         Raises:
             TimeoutException: If the element is not found within the given time.
         """
-        self.logger.debug(f"Enter the following text: {text}")
+        self.logger.debug(f"Enter text safely: {text} into element with XPath: {xpath}")
         element = self.find_element(xpath, timeout)
+        
+        self.driver.execute_script("arguments[0].focus();", element)
+        
         element.clear()
         element.send_keys(text)
+
 
     def scroll_to_element(self, xpath: str, timeout: int = 10) -> None:
         """
@@ -149,6 +154,26 @@ class BrowserController:
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located((By.XPATH, xpath))
         )
+
+    def wait_for_all_elements(self, xpath: str, timeout: int = 10) -> list:
+        """
+        Waits until all elements identified by the given XPath are visible.
+
+        Args:
+            xpath (str): The XPath locator string for the elements to wait for.
+            timeout (int): The maximum time (in seconds) to wait for the elements to become visible. Default is 10 seconds.
+
+        Returns:
+            list: A list of WebElement objects if found and visible, or raises an exception if not found.
+
+        Raises:
+            TimeoutException: If no elements are found or visible within the given time.
+        """
+        self.logger.debug(f"Wait for all elements using the following xpath: {xpath}")
+        return WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_all_elements_located((By.XPATH, xpath))
+        )
+
 
     def _initialize_driver(self) -> WebDriver:
         """

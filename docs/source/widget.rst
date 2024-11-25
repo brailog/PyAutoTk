@@ -9,6 +9,8 @@ Widgets represent UI elements on a web page. They simplify basic interactions su
 - ``enter_text``: Type text into input fields.
 - ``scroll_to``: Scroll to make an element visible.
 - ``wait_for``: Wait until an element becomes visible.
+- ``get_element_properties``: Retrieves the properties of a single element that matches the given XPath, including attributes, text and visibility status.
+- ``get_all_elements_properties``: Retrieves the properties of all elements that match the given XPath, including attributes, text, and visibility status.
 
 **Basic Example**
 
@@ -26,5 +28,5 @@ Widgets represent UI elements on a web page. They simplify basic interactions su
 
     search_google("Arcane")
 
-.. warning::
+.. warning::  
    Update the script accordingly to your browser language to avoid errors during execution.

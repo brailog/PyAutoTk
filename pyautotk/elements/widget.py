@@ -1,5 +1,6 @@
 import re
-from typing import Dict, Any
+import time
+from typing import Dict, Any, List
 from pyautotk.core.logger_utils import initialize_logger
 from pyautotk.core.exceptions import ElementNotVisibleException
 
@@ -24,7 +25,7 @@ class Widget:
         self.attrs = kwargs
         self.xpath = self._build_xpath()
 
-        self.logger.info(f"Constructed XPath for Widget: {self.xpath}")
+        self.logger.debug(f"Constructed XPath for Widget: {self.xpath}")
 
     def click(self, timeout: int = 10) -> None:
         """
@@ -42,8 +43,39 @@ class Widget:
             self.logger.error(f"Failed to click on element with XPath: {self.xpath}. Error: {e}")
             raise
 
+    def double_click(self, delay: float = 0.1, timeout: int = 10) -> None:
+        """
+        Performs a double-click on the element.
+
+        Args:
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Performing double-click on element with XPath: {self.xpath}")
+        try:
+            for _ in range(2):
+                self.click(timeout)
+                time.sleep(delay)
+        except Exception as e:
+            self.logger.error(f"Failed to double-click on element. Error: {e}")
+            raise
+
     def hover(self, timeout: int = 10) -> None:
-        self.controller.hover_element(self.xpath)
+        """
+        Simulates a mouse hover action over the element identified by the XPath.
+
+        Args:
+            timeout (int): Maximum time to wait for the element to become present before hovering. Default is 10 seconds.
+
+        Raises:
+            Exception: If the element cannot be found or the hover action fails.
+        """
+        self.logger.info(f"Attempting to hover over element with XPath: {self.xpath} (Timeout: {timeout} seconds)")
+        try:
+            self.controller.hover_element(self.x)
+            self.logger.info(f"Successfully hovered over element with XPath: {self.xpath}")
+        except Exception as e:
+            self.logger.error(f"Failed to hover over element with XPath: {self.xpath}. Error: {e}")
+            raise
 
     def enter_text(self, text: str, timeout: int = 10) -> None:
         """
@@ -56,7 +88,8 @@ class Widget:
         self.logger.info(f"Entering text '{text}' into element with XPath: {self.xpath}")
         self.click()  # Ensure the element is focused before entering text
         try:
-            self.controller.enter_text(self.xpath, text, timeout)
+            print('insend')
+            self.controller.enter_text_safely(self.xpath, text, timeout)
         except Exception as e:
             self.logger.error(
                 f"Failed to enter text into element with XPath: {self.xpath}. Error: {e}"
@@ -100,8 +133,78 @@ class Widget:
             self.logger.error(f"Failed to wait for element with XPath: {self.xpath}. Error: {e}")
             raise ElementNotVisibleException(self.xpath, timeout, e)
 
+
+    def get_element_properties(self, timeout: int = 10) -> Dict[str, Any]:
+        """
+        Extracts and returns properties of the first element identified by the XPath.
+
+        Args:
+            timeout (int): Maximum time to wait for the element to be present before retrieving properties. Default is 10 seconds.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing properties for the first matching element.
+
+        Raises:
+            Exception: If the properties cannot be retrieved.
+        """
+        self.logger.info(f"Attempting to retrieve information from the first element with XPath: {self.xpath} (Timeout: {timeout} seconds)")
+        try:
+            element = self.controller.wait_for_element(self.xpath, timeout)
+            element_data = self._extract_element_properties(element)
+
+            self.logger.info(f"Successfully retrieved information for the element: {element_data}")
+            return element_data
+        except Exception as e:
+            self.logger.error(f"Failed to retrieve information from element with XPath: {self.xpath}. Error: {e}")
+            raise
+
+
+    def get_all_elements_properties(self, timeout: int = 10) -> List[Dict[str, Any]]:
+        """
+        Extracts and returns properties of all elements that match the XPath.
+
+        Args:
+            timeout (int): Maximum time to wait for the elements to be present before retrieving properties. Default is 10 seconds.
+
+        Returns:
+            List[Dict[str, Any]]: A list of dictionaries, each containing properties for a matching element.
+
+        Raises:
+            Exception: If the properties cannot be retrieved.
+        """
+        self.logger.info(f"Attempting to retrieve information from all elements with XPath: {self.xpath} (Timeout: {timeout} seconds)")
+        try:
+            elements = self.controller.wait_for_all_elements(self.xpath)
+            elements_data = [self._extract_element_properties(element) for element in elements]
+
+            self.logger.info(f"Successfully retrieved information for {len(elements_data)} elements.")
+            return elements_data
+        except Exception as e:
+            self.logger.error(f"Failed to retrieve information from elements with XPath: {self.xpath}. Error: {e}")
+            raise
+
+
+    def get_attribute(self, attribute_name: str, timeout: int = 10) -> str:
+        """
+        Retrieves the value of a specific attribute from the element.
+
+        Args:
+            attribute_name (str): The name of the attribute to retrieve.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+
+        Returns:
+            str: The value of the specified attribute, or None if not found.
+        """
+        self.logger.info(f"Getting attribute '{attribute_name}' for element with XPath: {self.xpath}")
+        try:
+            element = self.controller.wait_for_element(self.xpath, timeout)
+            return element.get_attribute(attribute_name)
+        except Exception as e:
+            self.logger.error(f"Failed to get attribute '{attribute_name}'. Error: {e}")
+            raise
+
     @staticmethod
-    def get_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, str]:
+    def extract_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, str]:
         """
         Retrieves all elements in the page that have a specific attribute.
 
@@ -115,7 +218,7 @@ class Widget:
         logger = initialize_logger("Widget")
         logger.info(f"Retrieving all elements with attribute: {attribute}")
         try:
-            elements = controller.find_elements(f"//*[@{attribute}]")
+            elements = controller.wait_for_element(f"//*[@{attribute}]")
             return elements
         except Exception as e:
             logger.error(f"Failed to retrieve elements with attribute: {attribute}. Error: {e}")
@@ -143,3 +246,29 @@ class Widget:
             xpath += "[" + " and ".join(conditions) + "]"
         self.logger.debug(f"Generated XPath: {xpath} based on attributes: {self.attrs}")
         return xpath
+
+    def _extract_element_properties(self, element: Any) -> Dict[str, Any]:
+        """
+        Extracts properties from a single element.
+
+        Args:
+            element (Any): The WebElement to extract properties from.
+
+        Returns:
+            Dict[str, Any]: A dictionary containing properties for the given element.
+        """
+        attributes = {
+            attr_name: element.get_attribute(attr_name)
+            for attr_name in ["id", "class", "name", "type", "value", "href", "src", "alt", "aria-label"]
+            if element.get_attribute(attr_name) is not None
+        }
+
+        return {
+            "text": element.text,
+            "tag_name": element.tag_name,
+            "attributes": attributes,
+            "location": element.location,
+            "size": element.size,
+            "is_displayed": element.is_displayed(),
+            "is_enabled": element.is_enabled(),
+        }

@@ -27,6 +27,7 @@ dependencies = [
     "typing-extensions>=4.12.2",
     "websocket-client>=1.8.0",
     "wsproto>=1.2.0",
+    "pytest>=8.8.3",
     "sphinx-rtd-theme"
 ]
 
