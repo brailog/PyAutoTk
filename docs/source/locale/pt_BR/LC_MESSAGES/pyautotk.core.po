@@ -1,31 +1,33 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 13:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../pyautotk.core.rst:2
+#: ../pyautotk.core.rst:2
 msgid "pyautotk.core package"
 msgstr ""
 
-#: ../../pyautotk.core.rst:5
+#: ../pyautotk.core.rst:5
 msgid "Submodules"
 msgstr ""
 
-#: ../../pyautotk.core.rst:8
+#: ../pyautotk.core.rst:8
 msgid "pyautotk.core.browser\\_controller module"
 msgstr ""
 
@@ -47,7 +49,7 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: ../../pyautotk.core.rst
+#: ../pyautotk.core.rst
 msgid "Parameters"
 msgstr ""
 
@@ -81,7 +83,7 @@ msgid ""
 "Default is 10 seconds."
 msgstr ""
 
-#: ../../pyautotk.core.rst
+#: ../pyautotk.core.rst
 msgid "Raises"
 msgstr ""
 
@@ -93,7 +95,7 @@ msgstr ""
 msgid "If the element is not found within the given time."
 msgstr ""
 
-#: ../../pyautotk.core.rst
+#: ../pyautotk.core.rst
 msgid "Return type"
 msgstr ""
 
@@ -134,7 +136,7 @@ msgstr ""
 msgid "The XPath locator string for the desired element."
 msgstr ""
 
-#: ../../pyautotk.core.rst
+#: ../pyautotk.core.rst
 msgid "Returns"
 msgstr ""
 
@@ -211,11 +213,11 @@ msgstr ""
 msgid "The WebElement if found and visible, or raises an exception if not found."
 msgstr ""
 
-#: ../../pyautotk.core.rst:16
+#: ../pyautotk.core.rst:16
 msgid "pyautotk.core.config\\_loader module"
 msgstr ""
 
-#: ../../pyautotk.core.rst:24
+#: ../pyautotk.core.rst:24
 msgid "pyautotk.core.exceptions module"
 msgstr ""
 
@@ -235,7 +237,7 @@ msgid ""
 "self."
 msgstr ""
 
-#: ../../pyautotk.core.rst:32
+#: ../pyautotk.core.rst:32
 msgid "pyautotk.core.logger\\_utils module"
 msgstr ""
 
@@ -263,7 +265,7 @@ msgstr ""
 msgid "Configured logger instance with the specified name."
 msgstr ""
 
-#: ../../pyautotk.core.rst:40
+#: ../pyautotk.core.rst:40
 msgid "Module contents"
 msgstr ""
 

@@ -6,6 +6,11 @@ Requirements
 - Python 3.6 or higher.
 - Installed compatible browsers (Chrome, Firefox).
 
+Supported Platforms:
+--------------------
+- **Operating Systems:** Windows 10, Windows 11, Ubuntu 16.04 or newer.
+- **Browsers:** Firefox and Chrome (Chrome is the default browser).
+
 Installation
 ------------
 Install directly from PyPI::
