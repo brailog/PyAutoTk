@@ -11,6 +11,16 @@ PyAutoTk is perfect for:
 - Professionals automating routine tasks with minimal technical expertise.
 - Projects requiring quick integration and straightforward automation scripts.
 
+Support Information:
+--------------------
+- **Operating Systems:**
+  - Windows 10 and 11
+  - Ubuntu 16.04 and higher
+- **Browsers:**
+  - Firefox
+  - Chrome (default)
+
+
 .. toctree::
    :maxdepth: 3
    :caption: User Guide

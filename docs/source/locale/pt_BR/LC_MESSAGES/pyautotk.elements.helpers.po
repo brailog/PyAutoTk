@@ -1,31 +1,33 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 13:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../pyautotk.elements.helpers.rst:2
+#: ../pyautotk.elements.helpers.rst:2
 msgid "pyautotk.elements.helpers package"
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst:5
+#: ../pyautotk.elements.helpers.rst:5
 msgid "Submodules"
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst:8
+#: ../pyautotk.elements.helpers.rst:8
 msgid "pyautotk.elements.helpers.session\\_helpers module"
 msgstr ""
 
@@ -44,7 +46,7 @@ msgid ""
 "simplifies the workflow by handling browser instantiation and cleanup."
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst
+#: ../pyautotk.elements.helpers.rst
 msgid "Parameters"
 msgstr ""
 
@@ -66,7 +68,7 @@ msgstr ""
 msgid "Whether to run the browser in headless mode. Default is False."
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst
+#: ../pyautotk.elements.helpers.rst
 msgid "Returns"
 msgstr ""
 
@@ -74,11 +76,11 @@ msgstr ""
 msgid "The wrapped function with the browser session management."
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst
+#: ../pyautotk.elements.helpers.rst
 msgid "Return type"
 msgstr ""
 
-#: ../../pyautotk.elements.helpers.rst:16
+#: ../pyautotk.elements.helpers.rst:16
 msgid "Module contents"
 msgstr ""
 

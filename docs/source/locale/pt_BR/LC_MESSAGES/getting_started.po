@@ -1,55 +1,71 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 13:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../source/getting_started.rst:2
+#: ../getting_started.rst:2
 msgid "Getting Started"
-msgstr "Primeiros Passos"
+msgstr "Introdução"
 
-#: ../source/getting_started.rst:5
+#: ../getting_started.rst:5
 msgid "Requirements"
 msgstr "Requisitos"
 
-#: ../source/getting_started.rst:6
+#: ../getting_started.rst:6
 msgid "Python 3.6 or higher."
 msgstr "Python 3.6 ou superior."
 
-#: ../source/getting_started.rst:7
+#: ../getting_started.rst:7
 msgid "Installed compatible browsers (Chrome, Firefox)."
 msgstr "Navegadores compatíveis instalados (Chrome, Firefox)."
 
-#: ../source/getting_started.rst:10
+#: ../getting_started.rst:10
+msgid "Supported Platforms:"
+msgstr "Plataformas Suportadas:"
+
+#: ../getting_started.rst:11
+msgid "**Operating Systems:** Windows 10, Windows 11, Ubuntu 16.04 or newer."
+msgstr ""
+"**Sistemas Operacionais:** Windows 10, Windows 11, Ubuntu 16.04 ou mais "
+"recente."
+
+#: ../getting_started.rst:12
+msgid "**Browsers:** Firefox and Chrome (Chrome is the default browser)."
+msgstr "**Navegadores:** Firefox e Chrome (Chrome é o navegador padrão)."
+
+#: ../getting_started.rst:15
 msgid "Installation"
 msgstr "Instalação"
 
-#: ../source/getting_started.rst:11
+#: ../getting_started.rst:16
 msgid "Install directly from PyPI::"
 msgstr "Instale diretamente do PyPI::"
 
-#: ../source/getting_started.rst:15
+#: ../getting_started.rst:20
 msgid "Or install from the repository::"
 msgstr "Ou instale a partir do repositório::"
 
-#: ../source/getting_started.rst:22
+#: ../getting_started.rst:27
 msgid "Example Code"
-msgstr "Exemplo de Código"
+msgstr "Código de Exemplo"
 
-#: ../source/getting_started.rst:43
+#: ../getting_started.rst:48
 msgid ""
 "The example script provided is configured for a browser in Portuguese "
 "(pt-BR). To adapt it for English or other languages, ensure the text used"
@@ -61,7 +77,7 @@ msgstr ""
 "certifique-se de que o texto usado no `aria_label` ou outros atributos "
 "corresponda ao idioma nativo do seu navegador."
 
-#: ../source/getting_started.rst:47
+#: ../getting_started.rst:52
 msgid ""
 "For instance: - In Portuguese: ``\"Próximo Vídeo\"`` - In English: "
 "``\"Next video\"``"
@@ -69,7 +85,7 @@ msgstr ""
 "Por exemplo: - Em português: ``\"Próximo Vídeo\"`` - Em inglês: ``\"Next "
 "video\"``"
 
-#: ../source/getting_started.rst:51
+#: ../getting_started.rst:56
 msgid "Update the script accordingly to avoid errors during execution."
 msgstr "Atualize o script de acordo para evitar erros durante a execução."
 

@@ -1,35 +1,37 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 13:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../index.rst:14
+#: ../index.rst:24
 msgid "User Guide"
 msgstr "Guia do Usuário"
 
-#: ../../index.rst:25
+#: ../index.rst:35
 msgid "API Reference"
 msgstr "Referência da API"
 
-#: ../../index.rst:2
+#: ../index.rst:2
 msgid "PyAutoTk: A Simplified Automation"
-msgstr "PyAutoTk: Uma Automação Simplificada"
+msgstr "PyAutoTk: Automação Simplificada"
 
-#: ../../index.rst:4
+#: ../index.rst:4
 msgid ""
 "PyAutoTk is a Python library designed to streamline web browser "
 "automation. Built on Selenium, it provides a modular and extensible "
@@ -37,32 +39,43 @@ msgid ""
 "and rotine automation."
 msgstr ""
 "PyAutoTk é uma biblioteca Python projetada para simplificar a automação "
-"de navegadores web. Construída sobre o Selenium, ela oferece uma "
+"de navegadores web. Construída sobre o Selenium, ela fornece uma "
 "interface modular e extensível para automatizar tarefas como testes "
-"automatizados, extração de dados da web (web scraping) e automação de "
-"tarefas rotineiras."
+"automatizados, web scraping e automação de rotinas."
 
-#: ../../index.rst:7
+#: ../index.rst:7
 msgid "When to Use?"
 msgstr "Quando Usar?"
 
-#: ../../index.rst:8
+#: ../index.rst:8
 msgid "PyAutoTk is perfect for:"
 msgstr "PyAutoTk é perfeito para:"
 
-#: ../../index.rst:10
+#: ../index.rst:10
 msgid "Developers and QAs creating reusable and scalable scripts."
-msgstr "Desenvolvedores e QAs que criam scripts reutilizáveis e escaláveis."
+msgstr "Desenvolvedores e QAs criando scripts reutilizáveis e escaláveis."
 
-#: ../../index.rst:11
+#: ../index.rst:11
 msgid "Professionals automating routine tasks with minimal technical expertise."
 msgstr ""
-"Profissionais que automatizam tarefas rotineiras com pouca experiência "
-"técnica."
+"Profissionais automatizando tarefas rotineiras com conhecimento técnico "
+"mínimo."
 
-#: ../../index.rst:12
+#: ../index.rst:12
 msgid ""
 "Projects requiring quick integration and straightforward automation "
 "scripts."
-msgstr "Projetos que requerem integração rápida e scripts de automação simples."
+msgstr "Projetos que exigem integração rápida e scripts de automação simples."
+
+#: ../index.rst:15
+msgid "Support Information:"
+msgstr "Informações de Suporte:"
+
+#: ../index.rst:16
+msgid "**Operating Systems:** - Windows 10 and 11 - Ubuntu 16.04 and higher"
+msgstr "**Sistemas Operacionais:** - Windows 10 e 11 - Ubuntu 16.04 e superiores"
+
+#: ../index.rst:19
+msgid "**Browsers:** - Firefox - Chrome (default)"
+msgstr "**Navegadores:** - Firefox - Chrome (padrão)"
 
