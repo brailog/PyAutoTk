@@ -1,31 +1,33 @@
-# Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Gabriel Ramos R. Oliveira
+# This file is distributed under the same license as the PyAutoTk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 17:37-0300\n"
+"Project-Id-Version: PyAutoTk \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 13:05-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"Language-Team: pt_BR <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: ../../page_obj.rst:2
+#: ../page_obj.rst:2
 msgid "Page Object"
 msgstr "Page Object"
 
-#: ../../page_obj.rst:4
+#: ../page_obj.rst:4
 msgid "**What is a Page Object?**"
 msgstr "**O que é um Page Object?**"
 
-#: ../../page_obj.rst:6
+#: ../page_obj.rst:6
 msgid ""
 "Page Object Model (POM) is a design pattern that promotes separation of "
 "concerns. Instead of defining actions directly in scripts, you "
@@ -36,31 +38,31 @@ msgstr ""
 "você encapsula a lógica em classes que representam páginas ou componentes"
 " da interface do usuário."
 
-#: ../../page_obj.rst:9
+#: ../page_obj.rst:9
 msgid "Practical Example with PyAutoTk"
 msgstr "Exemplo Prático com PyAutoTk"
 
-#: ../../page_obj.rst:10
+#: ../page_obj.rst:10
 msgid "Using the provided local template, let’s automate a contact form:"
 msgstr ""
-"Usando o template local fornecido, vamos automatizar um formulário de "
+"Usando o modelo local fornecido, vamos automatizar um formulário de "
 "contato:"
 
-#: ../../page_obj.rst:30
+#: ../page_obj.rst:30
 msgid "Using in a Script:"
 msgstr "Usando em um Script:"
 
-#: ../../page_obj.rst:50
+#: ../page_obj.rst:50
 msgid ""
 "You can clone the PyAutoTk repository to access a fully functional "
 "example page along with pre-structured Page Object implementations. This "
 "example is located at the following path:"
 msgstr ""
 "Você pode clonar o repositório do PyAutoTk para acessar uma página de "
-"exemplo totalmente funcional junto com implementações de Page Object "
-"pré-estruturadas. Este exemplo está localizado no seguinte caminho:"
+"exemplo totalmente funcional juntamente com implementações de Page Object"
+" pré-estruturadas. Este exemplo está localizado no seguinte caminho:"
 
-#: ../../page_obj.rst:52
+#: ../page_obj.rst:52
 msgid ""
 "`PyAutoTk Examples <https://github.com/brailog/PyAutoTk/tree/page-"
 "obj/pyautotk/examples>`_"
@@ -68,23 +70,23 @@ msgstr ""
 "`Exemplos do PyAutoTk <https://github.com/brailog/PyAutoTk/tree/page-"
 "obj/pyautotk/examples>`_"
 
-#: ../../page_obj.rst:54
+#: ../page_obj.rst:54
 msgid "The repository provides:"
 msgstr "O repositório fornece:"
 
-#: ../../page_obj.rst:56
+#: ../page_obj.rst:56
 msgid "A sample webpage for testing automation."
 msgstr "Uma página de exemplo para testar automação."
 
-#: ../../page_obj.rst:57
+#: ../page_obj.rst:57
 msgid "A ready-to-use Page Object structure."
 msgstr "Uma estrutura de Page Object pronta para uso."
 
-#: ../../page_obj.rst:58
+#: ../page_obj.rst:58
 msgid "Example scripts demonstrating how to interact with the library."
 msgstr "Scripts de exemplo demonstrando como interagir com a biblioteca."
 
-#: ../../page_obj.rst:60
+#: ../page_obj.rst:60
 msgid ""
 "Cloning the repository is a great way to quickly get started and explore "
 "the full potential of PyAutoTk in a practical setting."
