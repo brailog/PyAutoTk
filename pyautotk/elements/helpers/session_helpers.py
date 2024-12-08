@@ -1,6 +1,6 @@
 from functools import wraps
 from pyautotk.core.browser_controller import BrowserController
-
+from pyautotk.core.logger_utils import initialize_logger
 
 def browser_session(
     url: str,
@@ -26,7 +26,7 @@ def browser_session(
     Returns:
         Callable: The wrapped function with the browser session management.
     """
-
+    logger = initialize_logger(browser_session.__name__)
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -45,11 +45,13 @@ def browser_session(
                 browser_type=browser_type, maximize=maximize, headless=headless
             )
             try:
-                session.open_url(url)
+                session._open_url(url)
                 return func(session, *args, **kwargs)
             finally:
-                if kill_browser:
-                    session.kill_browser()
+                if headless and not kill_browser:
+                    logger.warning("Kill Browser parameter was ignored since headless is active")
+                if kill_browser or headless:
+                    session._kill_browser()
 
         return wrapper
 

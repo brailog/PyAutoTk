@@ -28,7 +28,8 @@ dependencies = [
     "websocket-client>=1.8.0",
     "wsproto>=1.2.0",
     "pytest>=8.3.3",
-    "sphinx-rtd-theme"
+    "sphinx-rtd-theme",
+    "psutil",
 ]
 
 [project.urls]

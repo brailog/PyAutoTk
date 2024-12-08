@@ -3,9 +3,10 @@ import pytest
 from pyautotk.elements.widget import Widget
 from pyautotk.elements.helpers.session_helpers import browser_session
 from pyautotk.core.config_loader import config
+from pyautotk.core.exceptions import WidgetWaitTimeoutException
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="module", autouse=True)
 def browser_setup():
     """
     Provides browser configuration for the tests.
@@ -15,7 +16,7 @@ def browser_setup():
 
 
 @pytest.mark.parametrize("swipe_times", [5])
-def test_watch_shorts(browser_setup, swipe_times):
+def test_watch_shorts(swipe_times):
     """
     Tests the functionality of watching YouTube Shorts.
     
@@ -28,16 +29,20 @@ def test_watch_shorts(browser_setup, swipe_times):
         Widget(session, text="Shorts").click()
         next_short_btn = Widget(session, aria_label="Próximo vídeo")
         for _ in range(swipe_times):
-            next_short_btn.click()
-            time.sleep(1)
+            try:
+                next_short_btn.wait_for()
+                next_short_btn.click()
+                time.sleep(0.5)
+            except WidgetWaitTimeoutException:
+                return False
         
         return True
 
-    assert watch_shorts()
+    assert watch_shorts(), "Unable to press the next button."
 
 
 @pytest.mark.parametrize("search_input", ["Python"])
-def test_search_google(browser_setup, search_input):
+def test_search_google(search_input):
     """
     Tests the Google search functionality.
 
@@ -55,7 +60,7 @@ def test_search_google(browser_setup, search_input):
     assert search_google()
 
 
-def test_navigate_via_reddit(browser_setup):
+def test_navigate_via_reddit():
     """
     Tests navigation on Reddit to the r/Python community.
 
@@ -66,6 +71,6 @@ def test_navigate_via_reddit(browser_setup):
     def navigate_via_reddit(session) -> bool:
         Widget(session, text="Tecnologia").click()
         Widget(session, text="Programação").click()
-
+        time.sleep(3)
         return True
     assert navigate_via_reddit()

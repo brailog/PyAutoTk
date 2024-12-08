@@ -41,7 +41,7 @@ Create a new file called `pyautotk_example.py` and copy the following code:
 import time
 from pyautotk.elements.widget import Widget
 from pyautotk.elements.helpers.session_helpers import browser_session
-from pyautotk.core.exceptions import ElementNotVisibleException
+from pyautotk.core.exceptions import WidgetWaitTimeoutException
 
 @browser_session(url="https://www.youtube.com/")
 def watch_shorts(session, swipe_times=5):
@@ -52,7 +52,7 @@ def watch_shorts(session, swipe_times=5):
         try:
             en_button_down.wait_for()
             en_button_down.click()
-        except ElementNotVisibleException:
+        except WidgetWaitTimeoutException:
             pt_button_down.wait_for()
             pt_button_down.click()
         time.sleep(1)

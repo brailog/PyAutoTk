@@ -1,7 +1,7 @@
-import unittest
+from pyautotk.elements.helpers.session_helpers import browser_session
 from pyautotk.elements.widget import Widget
 from unittest.mock import MagicMock
-
+import unittest
 
 class TestWidgetXPath(unittest.TestCase):
     def setUp(self):
@@ -26,3 +26,6 @@ class TestWidgetXPath(unittest.TestCase):
             expected_xpath,
             "XPath generation failed for multiple attributes.",
         )
+
+if __name__ == '__main__':
+    unittest.main()

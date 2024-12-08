@@ -2,8 +2,15 @@ import re
 import time
 from typing import Dict, Any, List
 from pyautotk.core.logger_utils import initialize_logger
-from pyautotk.core.exceptions import ElementNotVisibleException
-
+from pyautotk.core.exceptions import WidgetWaitTimeoutException
+from pyautotk.core.exceptions import WidgetClickException
+from pyautotk.core.exceptions import WidgetDoubleClickException
+from pyautotk.core.exceptions import WidgetHoverException
+from pyautotk.core.exceptions import WidgetEnterTextException
+from pyautotk.core.exceptions import WidgetScrollException
+from pyautotk.core.exceptions import WidgetRetrievePropertiesException
+from pyautotk.core.exceptions import WidgetAttributeException
+from pyautotk.core.exceptions import WidgetExtractionException
 
 class Widget:
     """
@@ -38,10 +45,10 @@ class Widget:
             f"Attempting to click on element with XPath: {self.xpath} (Timeout: {timeout} seconds)"
         )
         try:
-            self.controller.click_element(self.xpath, timeout)
+            self.controller._click_element(self.xpath, timeout)
         except Exception as e:
             self.logger.error(f"Failed to click on element with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise WidgetClickException(self.xpath, e)
 
     def double_click(self, delay: float = 0.1, timeout: int = 10) -> None:
         """
@@ -57,7 +64,7 @@ class Widget:
                 time.sleep(delay)
         except Exception as e:
             self.logger.error(f"Failed to double-click on element. Error: {e}")
-            raise
+            raise WidgetDoubleClickException(self.xpath, e)
 
     def hover(self, timeout: int = 10) -> None:
         """
@@ -71,11 +78,11 @@ class Widget:
         """
         self.logger.info(f"Attempting to hover over element with XPath: {self.xpath} (Timeout: {timeout} seconds)")
         try:
-            self.controller.hover_element(self.x)
+            self.controller._hover_element(self.x)
             self.logger.info(f"Successfully hovered over element with XPath: {self.xpath}")
         except Exception as e:
             self.logger.error(f"Failed to hover over element with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise WidgetHoverException(self.xpath, e)
 
     def enter_text(self, text: str, timeout: int = 10) -> None:
         """
@@ -88,13 +95,12 @@ class Widget:
         self.logger.info(f"Entering text '{text}' into element with XPath: {self.xpath}")
         self.click()  # Ensure the element is focused before entering text
         try:
-            print('insend')
-            self.controller.enter_text_safely(self.xpath, text, timeout)
+            self.controller._enter_text_safely(self.xpath, text, timeout)
         except Exception as e:
             self.logger.error(
                 f"Failed to enter text into element with XPath: {self.xpath}. Error: {e}"
             )
-            raise
+            raise WidgetEnterTextException(self.xpath, e)
 
     def scroll_to(self, timeout: int = 10) -> None:
         """
@@ -107,10 +113,10 @@ class Widget:
             f"Scrolling to element with XPath: {self.xpath} (Timeout: {timeout} seconds)"
         )
         try:
-            self.controller.scroll_to_element(self.xpath, timeout)
+            self.controller._scroll_to_element(self.xpath, timeout)
         except Exception as e:
             self.logger.error(f"Failed to scroll to element with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise WidgetScrollException(self.xpath, e)
 
     def wait_for(self, timeout: int = 10) -> Any:
         """
@@ -126,12 +132,12 @@ class Widget:
             f"Waiting for element with XPath: {self.xpath} to become visible (Timeout: {timeout} seconds)"
         )
         try:
-            element = self.controller.wait_for_element(self.xpath, timeout)
+            element = self.controller._wait_for_element(self.xpath, timeout)
             self.logger.info(f"Element with XPath: {self.xpath} is now visible.")
             return element
         except Exception as e:
             self.logger.error(f"Failed to wait for element with XPath: {self.xpath}. Error: {e}")
-            raise ElementNotVisibleException(self.xpath, timeout, e)
+            raise WidgetWaitTimeoutException(self.xpath, timeout, e)
 
 
     def get_element_properties(self, timeout: int = 10) -> Dict[str, Any]:
@@ -149,14 +155,14 @@ class Widget:
         """
         self.logger.info(f"Attempting to retrieve information from the first element with XPath: {self.xpath} (Timeout: {timeout} seconds)")
         try:
-            element = self.controller.wait_for_element(self.xpath, timeout)
+            element = self.controller._wait_for_element(self.xpath, timeout)
             element_data = self._extract_element_properties(element)
 
             self.logger.info(f"Successfully retrieved information for the element: {element_data}")
             return element_data
         except Exception as e:
             self.logger.error(f"Failed to retrieve information from element with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise WidgetRetrievePropertiesException(self.xpath, e)
 
 
     def get_all_elements_properties(self, timeout: int = 10) -> List[Dict[str, Any]]:
@@ -174,14 +180,14 @@ class Widget:
         """
         self.logger.info(f"Attempting to retrieve information from all elements with XPath: {self.xpath} (Timeout: {timeout} seconds)")
         try:
-            elements = self.controller.wait_for_all_elements(self.xpath)
+            elements = self.controller._wait_for_all_elements(self.xpath)
             elements_data = [self._extract_element_properties(element) for element in elements]
 
             self.logger.info(f"Successfully retrieved information for {len(elements_data)} elements.")
             return elements_data
         except Exception as e:
             self.logger.error(f"Failed to retrieve information from elements with XPath: {self.xpath}. Error: {e}")
-            raise
+            raise WidgetRetrievePropertiesException(self.xpath, e)
 
 
     def get_attribute(self, attribute_name: str, timeout: int = 10) -> str:
@@ -197,11 +203,11 @@ class Widget:
         """
         self.logger.info(f"Getting attribute '{attribute_name}' for element with XPath: {self.xpath}")
         try:
-            element = self.controller.wait_for_element(self.xpath, timeout)
+            element = self.controller._wait_for_element(self.xpath, timeout)
             return element.get_attribute(attribute_name)
         except Exception as e:
             self.logger.error(f"Failed to get attribute '{attribute_name}'. Error: {e}")
-            raise
+            raise WidgetAttributeException(self.xpath, e)
 
     @staticmethod
     def extract_all_elements_with_attribute(controller: Any, attribute: str) -> Dict[str, str]:
@@ -218,11 +224,11 @@ class Widget:
         logger = initialize_logger("Widget")
         logger.info(f"Retrieving all elements with attribute: {attribute}")
         try:
-            elements = controller.wait_for_element(f"//*[@{attribute}]")
+            elements = controller._wait_for_element(f"//*[@{attribute}]")
             return elements
         except Exception as e:
             logger.error(f"Failed to retrieve elements with attribute: {attribute}. Error: {e}")
-            raise
+            raise WidgetExtractionException(attribute, e)
 
     def _build_xpath(self) -> str:
         """
