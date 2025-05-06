@@ -156,6 +156,7 @@ cython_debug/
 
 # DevOps
 pypi_deploy.sh
+*.backup
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

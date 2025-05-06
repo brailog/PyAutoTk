@@ -5,6 +5,7 @@ from pyautotk.core.logger_utils import initialize_logger
 from pyautotk.core.exceptions import ElementNotVisibleException
 
 
+
 class Widget:
     """
     Represents a UI element on the page and provides methods to interact with it using the specified controller.
@@ -71,7 +72,7 @@ class Widget:
         """
         self.logger.info(f"Attempting to hover over element with XPath: {self.xpath} (Timeout: {timeout} seconds)")
         try:
-            self.controller.hover_element(self.x)
+            self.controller.hover_element(self.xpath)
             self.logger.info(f"Successfully hovered over element with XPath: {self.xpath}")
         except Exception as e:
             self.logger.error(f"Failed to hover over element with XPath: {self.xpath}. Error: {e}")
@@ -134,7 +135,7 @@ class Widget:
             raise ElementNotVisibleException(self.xpath, timeout, e)
 
 
-    def get_element_properties(self, timeout: int = 10) -> Dict[str, Any]:
+    def properties(self, timeout: int = 10) -> Dict[str, Any]:
         """
         Extracts and returns properties of the first element identified by the XPath.
 
@@ -159,7 +160,7 @@ class Widget:
             raise
 
 
-    def get_all_elements_properties(self, timeout: int = 10) -> List[Dict[str, Any]]:
+    def all_properties(self, timeout: int = 10) -> List[Dict[str, Any]]:
         """
         Extracts and returns properties of all elements that match the XPath.
 
@@ -269,6 +270,6 @@ class Widget:
             "attributes": attributes,
             "location": element.location,
             "size": element.size,
-            "is_displayed": element.is_displayed(),
-            "is_enabled": element.is_enabled(),
+            "displayed": element.is_displayed(),
+            "enabled": element.is_enabled(),
         }

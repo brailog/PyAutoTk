@@ -1,19 +1,15 @@
 [project]
 name = "pyautotk"
-version = "0.4.0"
+version = "0.1.0"
+description = ""
 authors = [
-  { name="Gabriel Ramos R. Oliveira", email="bielrammos@gmail.com" },
+    {name = "Gabriel Ramos R. Oliveira"}
 ]
-description = "Page Object framework helper"
+license = {text = "MIT License"}
 readme = "README.md"
-requires-python = ">=3.8"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
-
+requires-python = ">=3.9"
 dependencies = [
+    "playwright>=1.50.0",
     "selenium>=4.25.0",
     "urllib3>=1.26.16",
     "attrs>=24.2.0",
@@ -31,6 +27,10 @@ dependencies = [
     "sphinx-rtd-theme"
 ]
 
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0", "setuptools>=61.0"]
+build-backend = ["poetry.core.masonry.api", "setuptools.build_meta"]
+
 [project.urls]
 Homepage = "https://github.com/brailog/PyAutoTk"
 Issues = "https://github.com/brailog/PyAutoTk"
@@ -41,11 +41,6 @@ dev = [
     "black>=22.10.0",
     "pre-commit>=4.0.0",
 ]
-
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 
 [tool.setuptools]
 packages = ["pyautotk", "pyautotk.core", "pyautotk.elements", "pyautotk.elements.helpers", "pyautotk.examples"]
