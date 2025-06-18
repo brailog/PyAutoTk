@@ -85,4 +85,4 @@ config.browser_type = "firefox"
 config.headless_mode = False
 config.maximize_browser = True
 ```
-For more details, refer to the official documentation [here](https://pyautotk.readthedocs.io/en/latest/)
+For more details, refer to the official documentation [here](https://pyautotk.readthedocs.io/en/dev-icst/)
