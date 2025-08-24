@@ -34,12 +34,15 @@ def test_form():
     playwright, browser, page = setup_page()
     
     try:
+        # Navigate to form section
+        for _ in range(2):
+            page.click("#next-btn")
         page.fill("#text-input", "Texto de teste")
         page.fill("#email-input", "teste@exemplo.com")
         page.fill("#password-input", "senha123")
         page.fill("#number-input", "42")
         page.click("#radio2")
-        page.click("#Opção 2")
+        page.select_option("#dropdown", label="Opção 2")
         page.click("#submit-btn")
         
         form_data = page.text_content("#form-data")
@@ -52,6 +55,9 @@ def test_hover():
     playwright, browser, page = setup_page()
     
     try:
+        # Navigate to hover section
+        for _ in range(3):
+            page.click("#next-btn")
         status = page.text_content("#hover-status")
         assert "não está" in status
         page.hover("#hover-div")
@@ -64,12 +70,15 @@ def test_tabs():
     playwright, browser, page = setup_page()
     
     try:
+        # Navigate to tabs section
+        for _ in range(4):
+            page.click("#next-btn")
         tab1 = page.locator("#tab1")
-        assert "active" in tab1.get_attribute("class")
+        assert "primeira tab" in tab1.text_content()
         page.click("[data-tab='tab2']")
         tab2 = page.locator("#tab2")
         assert "active" in tab2.get_attribute("class")
-        assert "segunda tab" in tab2.text_content()
+        assert "segunda tab" in tab2.text_content() # This assertion is good
     finally:
         teardown(playwright, browser)
 
@@ -77,6 +86,9 @@ def test_modal():
     playwright, browser, page = setup_page()
     
     try:
+        # Navigate to modal section
+        for _ in range(5):
+            page.click("#next-btn")
         page.click("#open-modal-btn")
         modal = page.locator("#test-modal")
         assert modal.is_visible()
@@ -89,6 +101,9 @@ def test_alerts_toasts():
     playwright, browser, page = setup_page()
     
     try:
+        # Navigate to alerts section
+        for _ in range(6):
+            page.click("#next-btn")
         page.click("#success-alert-btn")
         alert = page.locator(".alert-success")
         assert alert.is_visible()

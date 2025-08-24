@@ -1,9 +1,7 @@
 
 from pyautotk.elements.widget import Widget
 from pyautotk.elements.helpers.session_helpers import browser_session
-from pyautotk.elements.helpers.input_helpers import Keyboard
 import os
-from time import sleep
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 MOCKUP_TEST_URL_FILE = os.path.join(base_dir, "playground.html")
@@ -21,6 +19,9 @@ def test_botoes(session):
     
 @browser_session(f"file://{MOCKUP_TEST_URL_FILE}")
 def test_formularios(session):
+    for _ in range(2):
+        Widget(session, id="next-btn").click()
+
     Widget(session, id="text-input").enter_text("Texto de teste")
     Widget(session, id="email-input").enter_text("teste@exemplo.com")
     Widget(session, id="password-input").enter_text("senha123")
@@ -35,6 +36,9 @@ def test_formularios(session):
 
 @browser_session(f"file://{MOCKUP_TEST_URL_FILE}")
 def test_hover(session):
+    for _ in range(3):
+        Widget(session, id="next-btn").click()
+
     hover_div = Widget(session, id="hover-div")
     hover_status = Widget(session, id="hover-status")
     assert "não está" in hover_status.properties().get("text")
@@ -43,6 +47,9 @@ def test_hover(session):
 
 @browser_session(f"file://{MOCKUP_TEST_URL_FILE}")
 def test_tabs(session):
+    for _ in range(4):
+        Widget(session, id="next-btn").click()
+
     tab1_content = Widget(session, id="tab1")
     assert "primeira" in tab1_content.properties().get("text")
     tab2_btn = Widget(session, data_tab="tab2")
@@ -53,6 +60,9 @@ def test_tabs(session):
 
 @browser_session(f"file://{MOCKUP_TEST_URL_FILE}")
 def test_modal(session):
+    for _ in range(5):
+        Widget(session, id="next-btn").click()
+
     open_modal_btn = Widget(session, id="open-modal-btn")
     open_modal_btn.click()
     modal = Widget(session, id="test-modal")
@@ -60,9 +70,13 @@ def test_modal(session):
     close_btn = Widget(session, text="Fechar")
     assert close_btn.properties().get("displayed")
     close_btn.click()
+    assert not modal.properties().get("displayed")
 
 @browser_session(f"file://{MOCKUP_TEST_URL_FILE}")
 def test_alertas(session):
+    for _ in range(6):
+        Widget(session, id="next-btn").click()
+
     success_btn = Widget(session, id="success-alert-btn")
     success_btn.scroll_to()
     success_btn.click()
@@ -83,4 +97,4 @@ if __name__ == "__main__":
     test_tabs()
     test_modal()
     test_alertas()
-    print("Todos os testes do Playwright foram executados com sucesso!")
+    print("Todos os testes do PyAutoTk foram executados com sucesso!")

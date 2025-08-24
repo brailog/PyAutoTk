@@ -41,6 +41,10 @@ def test_form():
     driver = setup_driver()
     
     try:
+        # Navigate to form section
+        for _ in range(2):
+            driver.find_element(By.ID, "next-btn").click()
+
         # Preencher formulário
         driver.find_element(By.ID, "text-input").send_keys("Texto de teste")
         driver.find_element(By.ID, "email-input").send_keys("teste@exemplo.com")
@@ -74,6 +78,10 @@ def test_hover():
     driver = setup_driver()
     
     try:
+        # Navigate to hover section
+        for _ in range(3):
+            driver.find_element(By.ID, "next-btn").click()
+
         hover_div = driver.find_element(By.ID, "hover-div")
         hover_status = driver.find_element(By.ID, "hover-status")
 
@@ -93,6 +101,10 @@ def test_tabs():
     driver = setup_driver()
     
     try:
+        # Navigate to tabs section
+        for _ in range(4):
+            driver.find_element(By.ID, "next-btn").click()
+
         # Verificar tab inicial
         tab1_content = driver.find_element(By.ID, "tab1")
         assert "primeira" in tab1_content.text
@@ -108,6 +120,10 @@ def test_modal():
     driver = setup_driver()
     
     try:
+        # Navigate to modal section
+        for _ in range(5):
+            driver.find_element(By.ID, "next-btn").click()
+
         # Abrir modal
         driver.find_element(By.ID, "open-modal-btn").click()
 
@@ -129,6 +145,10 @@ def test_alerts_toasts():
     driver = setup_driver()
     
     try:
+        # Navigate to alerts section
+        for _ in range(6):
+            driver.find_element(By.ID, "next-btn").click()
+
         # Mostrar alerta de sucesso
         driver.find_element(By.ID, "success-alert-btn").click()
 
@@ -150,6 +170,10 @@ def test_drag_and_drop():
     driver = setup_driver()
     
     try:
+        # Navigate to drag and drop section
+        for _ in range(7):
+            driver.find_element(By.ID, "next-btn").click()
+
         source = driver.find_element(By.ID, "drag-source")
         target = driver.find_element(By.ID, "drop-target")
         status = driver.find_element(By.ID, "dragdrop-status")

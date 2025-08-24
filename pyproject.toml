@@ -28,8 +28,8 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0", "setuptools>=61.0"]
-build-backend = ["poetry.core.masonry.api", "setuptools.build_meta"]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [project.urls]
 Homepage = "https://github.com/brailog/PyAutoTk"
