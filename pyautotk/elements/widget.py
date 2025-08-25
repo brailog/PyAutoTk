@@ -78,6 +78,22 @@ class Widget:
             self.logger.error(f"Failed to hover over element with XPath: {self.xpath}. Error: {e}")
             raise
 
+    def unhover(self, timeout: int = 10) -> None:
+        """
+        Moves the mouse away from the current element to remove the hover state.
+        This is typically done by moving the mouse to a neutral part of the page.
+
+        Args:
+            timeout (int): Maximum time to wait for the action to complete. Default is 10 seconds.
+        """
+        self.logger.info(f"Attempting to unhover from element with XPath: {self.xpath}")
+        try:
+            self.controller.unhover_element(timeout)
+            self.logger.info("Successfully unhovered by moving mouse away.")
+        except Exception as e:
+            self.logger.error(f"Failed to unhover. Error: {e}")
+            raise
+
     def enter_text(self, text: str, timeout: int = 10) -> None:
         """
         Enters text into the element (e.g., an input field) identified by the XPath.
@@ -87,9 +103,7 @@ class Widget:
             timeout (int): Maximum time to wait for the element to be present before entering text. Default is 10 seconds.
         """
         self.logger.info(f"Entering text '{text}' into element with XPath: {self.xpath}")
-        self.click()  # Ensure the element is focused before entering text
         try:
-            print('insend')
             self.controller.enter_text_safely(self.xpath, text, timeout)
         except Exception as e:
             self.logger.error(
@@ -223,6 +237,149 @@ class Widget:
             return elements
         except Exception as e:
             logger.error(f"Failed to retrieve elements with attribute: {attribute}. Error: {e}")
+            raise
+
+    def upload_file(self, file_path: str, timeout: int = 10) -> None:
+        """
+        Uploads a file to the element, which should be a file input.
+
+        Args:
+            file_path (str): The absolute path of the file to upload.
+            timeout (int): Maximum time to wait for the element to be present. Default is 10 seconds.
+        """
+        self.logger.info(f"Uploading file '{file_path}' to element with XPath: {self.xpath}")
+        try:
+            self.controller.upload_file(self.xpath, file_path, timeout)
+        except Exception as e:
+            self.logger.error(
+                f"Failed to upload file to element with XPath: {self.xpath}. Error: {e}"
+            )
+            raise
+
+    def select_by_text(self, text: str, timeout: int = 10) -> None:
+        """
+        Selects an option from a dropdown element by its visible text.
+
+        Args:
+            text (str): The visible text of the option to select.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Selecting option '{text}' by text from dropdown with XPath: {self.xpath}")
+        try:
+            self.controller.select_option_by_text(self.xpath, text, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to select option by text. Error: {e}")
+            raise
+
+    def select_by_value(self, value: str, timeout: int = 10) -> None:
+        """
+        Selects an option from a dropdown element by its 'value' attribute.
+
+        Args:
+            value (str): The value attribute of the option to select.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Selecting option with value '{value}' from dropdown with XPath: {self.xpath}")
+        try:
+            self.controller.select_option_by_value(self.xpath, value, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to select option by value. Error: {e}")
+            raise
+
+    def select_by_index(self, index: int, timeout: int = 10) -> None:
+        """
+        Selects an option from a dropdown element by its index (0-based).
+
+        Args:
+            index (int): The index of the option to select.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Selecting option at index {index} from dropdown with XPath: {self.xpath}")
+        try:
+            self.controller.select_option_by_index(self.xpath, index, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to select option by index. Error: {e}")
+            raise
+
+    def deselect_all(self, timeout: int = 10) -> None:
+        """
+        Deselects all options in a multi-select dropdown.
+
+        Args:
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Deselecting all options from dropdown with XPath: {self.xpath}")
+        try:
+            self.controller.deselect_all_options(self.xpath, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to deselect all options. Error: {e}")
+            raise
+
+    def deselect_by_text(self, text: str, timeout: int = 10) -> None:
+        """
+        Deselects an option from a multi-select dropdown by its visible text.
+
+        Args:
+            text (str): The visible text of the option to deselect.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Deselecting option '{text}' by text from dropdown with XPath: {self.xpath}")
+        try:
+            self.controller.deselect_option_by_text(self.xpath, text, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to deselect option by text. Error: {e}")
+            raise
+
+    def get_selected_texts(self, timeout: int = 10) -> list[str]:
+        """
+        Gets the text of all selected options from a dropdown.
+
+        Args:
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+
+        Returns:
+            list[str]: A list of the visible text of all selected options.
+        """
+        self.logger.info(f"Getting selected options' text from dropdown with XPath: {self.xpath}")
+        try:
+            return self.controller.get_all_selected_options_text(self.xpath, timeout)
+        except Exception as e:
+            self.logger.error(f"Failed to get selected options' text. Error: {e}")
+            raise
+
+    def set_value(self, value: str, timeout: int = 10) -> None:
+        """
+        Sets the value of an element directly using JavaScript.
+        This is the recommended way to interact with elements like range sliders (<input type="range">).
+
+        Args:
+            value (str): The value to set on the element.
+            timeout (int): Maximum time to wait for the element. Default is 10 seconds.
+        """
+        self.logger.info(f"Setting value '{value}' for element with XPath: {self.xpath}")
+        try:
+            self.controller.set_element_value(self.xpath, value, timeout)
+        except Exception as e:
+            self.logger.error(
+                f"Failed to set value for element with XPath: {self.xpath}. Error: {e}"
+            )
+            raise
+
+    def drag_to(self, target_widget: 'Widget', timeout: int = 10) -> None:
+        """
+        Drags the current widget and drops it onto the target widget.
+
+        Args:
+            target_widget (Widget): The widget instance to drop onto.
+            timeout (int): Maximum time to wait for the elements. Default is 10 seconds.
+        """
+        self.logger.info(f"Dragging element '{self.xpath}' to '{target_widget.xpath}'.")
+        try:
+            self.controller.drag_and_drop(self.xpath, target_widget.xpath, timeout)
+        except Exception as e:
+            self.logger.error(
+                f"Failed to drag element '{self.xpath}' to '{target_widget.xpath}'. Error: {e}"
+            )
             raise
 
     def _build_xpath(self) -> str:

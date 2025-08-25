@@ -22,6 +22,7 @@ def browser_session(
         browser_type (str): The type of browser to use. Supported values are 'firefox' or 'chrome'. Default is 'chrome'.
         maximize (bool): Whether to start the browser maximized. Default is False.
         headless (bool): Whether to run the browser in headless mode. Default is False.
+        kill_browser (bool): Whether to close the browser after the function completes. Default is True.
 
     Returns:
         Callable: The wrapped function with the browser session management.
@@ -42,14 +43,14 @@ def browser_session(
                 Any: The result of the decorated function.
             """
             session = BrowserController(
-                browser_type=browser_type, maximize=maximize, headless=headless
+                browser_type=browser_type, maximize=maximize, headless=headless, kill_browser=kill_browser
             )
             try:
                 session.open_url(url)
                 return func(session, *args, **kwargs)
             finally:
                 if kill_browser:
-                    session.kill_browser()
+                    session.close_browser()
 
         return wrapper
 
