@@ -194,17 +194,48 @@ class BrowserController:
         """
         Performs a drag-and-drop action from a source element to a target element.
 
+        This method uses conditional logic based on the browser type:
+        - For 'firefox', it uses a JavaScript executor to simulate the full HTML5 drag-and-drop event sequence,
+          which is more reliable for geckodriver.
+        - For other browsers (like 'chrome'), it uses the standard Selenium ActionChains `drag_and_drop` method.
+
         Args:
             source_xpath (str): The XPath locator for the element to drag.
             target_xpath (str): The XPath locator for the element to drop onto.
             timeout (int): Maximum time to wait for the elements.
         """
-        self.logger.debug(f"Performing drag and drop from '{source_xpath}' to '{target_xpath}'.")
         try:
             source_element = self.find_element(source_xpath, timeout)
             target_element = self.find_element(target_xpath, timeout)
-            ActionChains(self.driver).drag_and_drop(source_element, target_element).perform()
-            self.logger.info("Drag and drop action completed successfully.")
+
+            if self.browser_type == "firefox":
+                self.logger.debug(f"Performing drag and drop for Firefox using JavaScript from '{source_xpath}' to '{target_xpath}'.")
+                dnd_script = """
+                    const source = arguments[0];
+                    const target = arguments[1];
+
+                    const dataTransfer = new DataTransfer();
+                    const dragStartEvent = new DragEvent('dragstart', { dataTransfer: dataTransfer, bubbles: true, cancelable: true });
+                    source.dispatchEvent(dragStartEvent);
+
+                    const dragEnterEvent = new DragEvent('dragenter', { dataTransfer: dataTransfer, bubbles: true, cancelable: true });
+                    target.dispatchEvent(dragEnterEvent);
+
+                    const dragOverEvent = new DragEvent('dragover', { dataTransfer: dataTransfer, bubbles: true, cancelable: true });
+                    target.dispatchEvent(dragOverEvent);
+
+                    const dropEvent = new DragEvent('drop', { dataTransfer: dataTransfer, bubbles: true, cancelable: true });
+                    target.dispatchEvent(dropEvent);
+
+                    const dragEndEvent = new DragEvent('dragend', { bubbles: true, cancelable: true });
+                    source.dispatchEvent(dragEndEvent);
+                """
+                self.driver.execute_script(dnd_script, source_element, target_element)
+                self.logger.info("Drag and drop action completed successfully via JavaScript.")
+            else:
+                self.logger.debug(f"Performing drag and drop for '{self.browser_type}' using ActionChains from '{source_xpath}' to '{target_xpath}'.")
+                ActionChains(self.driver).drag_and_drop(source_element, target_element).perform()
+                self.logger.info("Drag and drop action completed successfully via ActionChains.")
         except Exception as e:
             self.logger.error(f"Drag and drop action failed. Error: {e}")
             raise
@@ -435,9 +466,10 @@ class BrowserController:
             chrome_bin = CHROME_BIN_LINUX
 
         if self.browser_type == "firefox":
+            op = webdriver.FirefoxProfile()
+            op.set_preference("detach", not self.kill_browser)
             options = webdriver.firefox.options.Options()
             options.binary_location = firefox_bin
-            options.add_experimental_option("detach", not self.kill_browser)
             if self.headless:
                 options.add_argument("--headless")
 

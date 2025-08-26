@@ -4,20 +4,18 @@ from pyautotk.elements.helpers.session_helpers import browser_session
 import os
 from pyautotk.core.config_loader import config
 import random
-from pyautotk.elements.helpers.input_helpers import Keyboard
 
 config.log_level = "DEBUG"
+config.browser_type = "firefox"
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
-MOCKUP_TEST_URL_FILE = "http://localhost:8080/" # os.path.join(base_dir, "playground.html")
+MOCKUP_TEST_URL_FILE = "http://localhost:8080/"
 
-#@browser_session(MOCKUP_TEST_URL_FILE)
 def start(session):
     botao_comecar = Widget(session, id="start-btn", text="Começar")
     botao_comecar.click()
 
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
 def test_botoes(session):
     Widget(session, id="primary-btn", text="Botão Primário").click()
     mensagem_depois_click = Widget(session, id="button-click-message").properties().get("text")
@@ -37,7 +35,6 @@ def test_botoes(session):
     Widget(session, text="Próximo").click()
 
 
-# @browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
 def test_links(session):
     Widget(session, id="simple-link").click()
     session.accept_alert()
@@ -51,7 +48,7 @@ def test_links(session):
     time.sleep(0.5)
     Widget(session, text="Próximo").click()
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
+
 def test_formularios(session):
     dummy_file_path = os.path.abspath(os.path.join(base_dir, "dummy_upload.txt"))
     with open(dummy_file_path, "w") as f:
@@ -109,7 +106,6 @@ def test_formularios(session):
     Widget(session, text="Próximo").click()
 
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
 def test_hover(session):
     hover_div = Widget(session, id="hover-div")
     hover_status = Widget(session, id="hover-status")
@@ -124,7 +120,6 @@ def test_hover(session):
     Widget(session, text="Próximo").click()
 
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
 def test_tabs(session):
     tab1_content = Widget(session, id="tab1")
     assert "primeira" in tab1_content.properties().get("text")
@@ -139,7 +134,7 @@ def test_tabs(session):
 
     Widget(session, text="Próximo").click()
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
+browser_session(MOCKUP_TEST_URL_FILE)
 def test_modal(session):
     Widget(session, id="open-modal-btn", text="Abrir Modal").click()
     modal = Widget(session, class_="modal", id="test-modal")
@@ -153,7 +148,7 @@ def test_modal(session):
 
     Widget(session, text="Próximo").click()
 
-#@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
+
 def test_alertas(session):
     Widget(session, id="success-alert-btn").click()
     alert_success = Widget(session, class_="alert alert-success")
@@ -177,8 +172,18 @@ def test_alertas(session):
 
     Widget(session, text="Próximo").click()
 
-@browser_session(MOCKUP_TEST_URL_FILE, kill_browser=False)
 def test_drag_and_drop(session):
+    source_drag = Widget(session, id="drag-source", draggable="true")
+    target_drop = Widget(session, id="drop-target")
+    status = Widget(session, id="dragdrop-status")
+
+    assert "Nenhuma" in status.properties().get("text")
+    source_drag.drag_to(target_drop)
+    time.sleep(5)
+    assert "solto" in status.properties().get("text")
+
+@browser_session(MOCKUP_TEST_URL_FILE)
+def full_execution(session):
     start(session)
     test_botoes(session)
     test_links(session)
@@ -187,16 +192,9 @@ def test_drag_and_drop(session):
     test_tabs(session)
     test_modal(session)
     test_alertas(session)
-
-    source_drag = Widget(session, id="drag-source", draggable="true")
-    target_drop = Widget(session, id="drop-target")
-    status = Widget(session, id="dragdrop-status")
-
-    assert "Nenhuma" in status.properties().get("text")
-    source_drag.drag_to(target_drop)
-    assert "solto" in status.properties().get("text")
+    test_drag_and_drop(session)
 
 
 if __name__ == "__main__":
-    test_drag_and_drop()
+    full_execution()
     print("Todos os testes do PyAutoTk foram executados com sucesso!")
